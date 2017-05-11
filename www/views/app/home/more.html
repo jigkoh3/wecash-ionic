@@ -1,0 +1,37 @@
+<ion-view view-title="More" class="shop-home-view">
+    <ion-content>
+        <div ng-repeat="(key, value) in listExchanges | groupBy: 'currency_from'">
+            <div class="item item-divider shop-section-title">
+
+                <span class="title-copy">{{ key }}</span>
+                <span class="currency-flag currency-flag-{{key | lowercase}}"></span>
+            </div>
+            <div class="row shop-products-narrow-cards-outer shop-product-cards-scroller" style="width: 500px;">
+                <div ng-repeat="ex in value | limitTo : 5" class="col col-50 shop-product-narrow-card" ui-sref="app.detail({exchangeId: ex._id})">
+                    <div class="list card">
+                        <div class="item item-body">
+                            <div class="row">
+                                <div class="col">
+                                    <pre-img ratio="_2_1" helper-class="shop-home-option-image-outer">
+                                        <img class="img-macth" ng-src="{{ex.user.profileImageURL}}" spinner-on-load>
+                                    </pre-img>
+                                </div>
+                                <div class="col text-left">
+                                    <!--<p class="des"><b>{{ex.currency_from}}</b> </p>-->
+                                    <h2 class="des">{{ex.amount_from | number:2}}</h2>
+                                    <p class="des"><b>{{ex.currency_to}}</b></p>
+                                    <p class="des">{{ex.amount_to | number:2}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item item-body">
+                            <h2 class="card-title">{{ex.user.displayName ? ex.user.displayName : '-'}}</h2>
+                            <p class="card-description"><b>{{ex.location.name ? ex.location.name : '-' }}</b>
+                                <p class="card-description"><b>35.1 km</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
