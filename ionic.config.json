@@ -1,0 +1,14 @@
+{
+  "name": "We Cash",
+  "app_id": "",
+  "gulpStartupTasks": [
+    "default",
+    "watch",
+    "templatecache"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ],
+  "documentRoot": "www"
+}
