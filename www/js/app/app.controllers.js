@@ -409,6 +409,12 @@ angular.module('your_app_name.app.controllers', [])
 .controller('ExchangeCtrl', function($scope, $stateParams, ExchangeService) {
 
     var exchangeId = $stateParams.exchangeId;
+    $scope.exchange = {};
+    ExchangeService.getExchange(exchangeId).then(function(res){
+        $scope.exchange = res;
+    },function(err){
+        alert(JSON.stringify(err));
+    });
 
 })
 
