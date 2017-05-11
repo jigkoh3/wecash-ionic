@@ -437,7 +437,11 @@ angular.module('your_app_name.app.controllers', [])
     };
 
     $scope.getSymbolByCode = function(currency) {
-        return currencyFormatService.getByCode(currency).symbol.grapheme;
+        if (currency) {
+            if (currencyFormatService.getByCode(currency).symbol.grapheme !== "undefined") {
+                return currencyFormatService.getByCode(currency).symbol.grapheme;
+            }
+        }
     };
     $scope.getExchanges();
 
@@ -486,7 +490,11 @@ angular.module('your_app_name.app.controllers', [])
     $scope.exchange = {};
     $scope.map = null;
     $scope.getSymbolByCode = function(currency) {
-        return currencyFormatService.getByCode(currency).symbol.grapheme;
+        if (currency) {
+            if (currencyFormatService.getByCode(currency).symbol.grapheme !== "undefined") {
+                return currencyFormatService.getByCode(currency).symbol.grapheme;
+            }
+        }
     };
     ExchangeService.getExchange(exchangeId).then(function(res) {
         $scope.exchange = res;
