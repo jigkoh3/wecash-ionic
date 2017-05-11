@@ -76,10 +76,7 @@
                 backdrop: '=?',
                 bottom: '@?'
             },
-            template: '<ul id="floating-menu"  \n\
-                            ng-style="{\'bottom\' : \'{{bottom}}\'}" \n\
-                            ng-class="{\'active\' : isOpen}" \n\
-                            ng-click="open()">' +
+            template: '<ul id="floating-menu" ng-style="{\'bottom\' : \'{{bottom}}\'}" ng-class="{\'active\' : isOpen}" ng-click="open()">' +
                     '<div ng-transclude></div>' +
                     '<span><li class="menu-button icon menu-icon" ng-class="icon" ng-style="{\'background-color\' : buttonColor, \'color\': iconColor}"></li></span>' +
                     '</ul>',
