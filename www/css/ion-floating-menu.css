@@ -103,15 +103,9 @@
     left: 0; 
     right: 0; 
     z-index: 9999;
-<<<<<<< HEAD
     width: 50px;
     height: 50px;
     line-height: 50px;
-=======
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
->>>>>>> a0ea028adc0cc6573ded360eba36d1b51393a0ad
     list-style-type: none;
     text-align: center;
     cursor: pointer;
@@ -245,8 +239,4 @@
 #floating-menu.active ion-floating-item:nth-child(7) > li {
     transform: translateY(-490px); -webkit-transform: translateY(-490px);
     transition-delay: 180ms; -webkit-transition-delay: 180ms;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> a0ea028adc0cc6573ded360eba36d1b51393a0ad
