@@ -394,6 +394,7 @@ angular.module('your_app_name.app.controllers', [])
 
                 google.maps.event.addListenerOnce($scope.map, 'idle', function() {
 
+
                     var marker = new google.maps.Marker({
                         map: $scope.map,
                         animation: google.maps.Animation.DROP,
@@ -424,6 +425,23 @@ angular.module('your_app_name.app.controllers', [])
             });
         }, 100);
     }
+    $scope.locationChanged = function(location) {
+
+        googleMapService.getLocationByPlace(location.place_id)
+            .then(function(data) {
+                console.log(data);
+                $scope.dataExchange.location = data.result.geometry.location;
+                $scope.dataExchange.location.name = location.description;
+                $scope.dataExchange.location.address = location.description;
+            });
+    };
+
+    $scope.getSymbolByCode = function(currency) {
+        return currencyFormatService.getByCode(currency).symbol.grapheme;
+    };
+    $scope.getExchanges();
+
+
 
 })
 
