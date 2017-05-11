@@ -1,48 +1,58 @@
 <ion-view class="shop-home-view" cache-view="false" view-title="Detail">
     <ion-content class="bg-detail">
         <div class="text-center">
-            <div class="map-detail">
+            <div class="map-detail" id="mapDetail" data-tap-disabled="true"></div>
+            <div class="user-image-outer">
+                <img class="user-image profile-image-detail" ng-src="{{exchange.user.profileImageURL}}">
             </div>
-            <h4>{{exchange.user.displayName}}</h4>
+            <h4 class="color-detail">{{exchange.user.displayName}}</h4>
         </div>
         <div class="list">
             <a class="item item-icon-left">
-                <i class="icon ion-cash"></i> From
+                <i class="icon ion-cash color-detail"></i> From
                 <span class="item-note">
                 {{exchange.currency_from}}
                 </span>
             </a>
             <a class="item item-icon-left">
-                <i class="icon ion-cash"></i>
+                <!-- <i class="icon ion-cash"></i> -->
                 <span class="item-note">
-                {{exchange.amount_from}}
+                {{exchange.amount_from  | number:2}}
                 </span>
             </a>
             <a class="item item-icon-left">
-                <i class="icon ion-cash"></i> To
+                <i class="icon ion-cash color-detail"></i> To
                 <span class="item-note">
                 {{exchange.currency_to}}
                 </span>
             </a>
             <a class="item item-icon-left">
-                <i class="icon ion-cash"></i> Amount
+                <i class="icon ion-calculator color-detail"></i> Amount
                 <span class="item-note">
-                {{exchange.amount_to}}
+                {{exchange.amount_to | number:2}}
                 </span>
             </a>
             <a class="item item-icon-left">
-                <i class="icon ion-location"></i> Location
+                <i class="icon ion-location color-detail"></i> Location
                 <!-- <p>{{exchange.location.name}}</p> -->
                 <span class="item-note location-detail">
                     {{exchange.location.address}}
                 </span>
             </a>
             <a class="item item-icon-left">
-                <i class="icon ion-calendar"></i> Schedule
+                <i class="icon ion-calendar color-detail"></i> Schedule
                 <span class="item-note">
-                {{exchange.created | date:'dd/MM/YYYY'}}
+                {{exchange.created | date:'dd/MM/yyyy'}}
                 </span>
             </a>
+        </div>
+        <div class="row menu-bottom-options text-center">
+            <div class="col col-bottom">
+                <a class="button button-icon icon ion-android-call call-detail" href="tel:*123#"></a>
+            </div>
+            <div class="col col-bottom">
+                <a class="button button-icon icon ion-chatbubbles chat-detail"></a>
+            </div>
         </div>
     </ion-content>
 </ion-view>
