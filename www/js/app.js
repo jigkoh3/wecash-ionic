@@ -18,7 +18,8 @@ angular.module('your_app_name', [
     'ion-floating-menu',
     'currencyFormat',
     'angular.filter',
-    'ion-place-tools'
+    'ion-place-tools',
+    'autocomplete.directive'
 ])
 
 .constant('$config', {
