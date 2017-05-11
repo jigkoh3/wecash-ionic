@@ -372,6 +372,10 @@ angular.module('your_app_name.app.controllers', [])
                     $scope.dataExchange.location.address = location.description;
                 });
         };
+
+        $scope.getSymbolByCode = function (currency) {
+            return currencyFormatService.getByCode(currency).symbol.grapheme;
+        };
         $scope.getExchanges();
 
     })
@@ -401,45 +405,6 @@ angular.module('your_app_name.app.controllers', [])
         };
 
         $rootScope.$on('userLoggedOut', function (e) {
-
-<<<<<<< HEAD
-                // Set the position of the marker using the place ID and location.
-                marker.setPlace( /** @type {!google.maps.Place} */ ({
-                    placeId: place.place_id,
-                    location: place.geometry.location
-                }));
-                marker.setVisible(true);
-                // + '<br>' + lati + ',' + lngi 
-                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                    place.formatted_address + '</div>');
-                infowindow.open(map, marker);
-                $timeout(function(argument) {
-                    $scope.location.hide();
-                }, 2000);
-
-                // ==== set data ====
-                console.log(place);
-                $rootScope.place = place;
-            });
-        }, 500);
-    }
-    $scope.locationChanged = function(location) {
-
-        googleMapService.getLocationByPlace(location.place_id)
-            .then(function(data) {
-                console.log(data);
-                $scope.dataExchange.location = data.result.geometry.location;
-                $scope.dataExchange.location.name = location.description;
-                $scope.dataExchange.location.address = location.description;
-            });
-    };
-
-    $scope.getSymbolByCode = function(currency){
-       return currencyFormatService.getByCode(currency).symbol.grapheme;
-    };
-    
-    $scope.getExchanges();
-=======
             $state.go('auth.welcome');
         });
 
@@ -448,8 +413,6 @@ angular.module('your_app_name.app.controllers', [])
         };
 
     })
->>>>>>> 6f4b6a272389b4237e1b97b62c4eb7c89f5745e7
-
 
     .controller('ExchangeCtrl', function ($scope, $stateParams, ExchangeService, $cordovaGeolocation) {
         var exchangeId = $stateParams.exchangeId;
