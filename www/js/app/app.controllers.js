@@ -481,11 +481,13 @@ angular.module('your_app_name.app.controllers', [])
 })
 
 
-.controller('ExchangeCtrl', function($scope, $stateParams, ExchangeService, $cordovaGeolocation) {
+.controller('ExchangeCtrl', function($scope, $stateParams, ExchangeService, $cordovaGeolocation, currencyFormatService) {
     var exchangeId = $stateParams.exchangeId;
     $scope.exchange = {};
     $scope.map = null;
-
+    $scope.getSymbolByCode = function(currency) {
+        return currencyFormatService.getByCode(currency).symbol.grapheme;
+    };
     ExchangeService.getExchange(exchangeId).then(function(res) {
         $scope.exchange = res;
 

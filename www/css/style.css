@@ -114,8 +114,13 @@
 }
 
 .profile-image-detail {
-    width: 80px;
+    width: 60px;
 }
-.map-more{
+
+.map-more {
     padding: 0px !important;
+}
+
+.footer-detail {
+    height: 55px;
 }
