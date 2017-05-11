@@ -15,7 +15,7 @@
                 </span>
             </a>
             <a class="item item-icon-left">
-                <i class="icon"><span class="currency-flag currency-flag-{{exchange.currency_to | lowercase}}"></span></i> &nbsp; From &nbsp;{{exchange.currency_to}}
+                <i class="icon"><span class="currency-flag currency-flag-{{exchange.currency_to | lowercase}}"></span></i> &nbsp; To &nbsp;{{exchange.currency_to}}
                 <span class="item-note">
                 {{getSymbolByCode(exchange.currency_to)}} {{exchange.amount_to  | number:2}}
                 </span>

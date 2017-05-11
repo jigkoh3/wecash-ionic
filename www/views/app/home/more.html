@@ -13,8 +13,7 @@
                 <h2>{{ex.user.displayName ? ex.user.displayName : '-'}}</h2>
                 <p>{{ex.location.name ? ex.location.name : '-' }}</p>
                 <p>{{ex.amount_from | number:2}}</p>
-                <p>{{ex.currency_to}}</p>
-                <p>{{ex.amount_to | number:2}}</p>
+                <p>{{ex.currency_to}} {{ex.amount_to | number:2}}</p>
             </a>
         </div>
     </ion-content>
