@@ -34,41 +34,74 @@ angular.module('your_app_name.app.controllers', [])
         $scope.posts = [];
         $scope.likes = [];
         $scope.user = {};
-/*
-        PostService.getUserPosts(userId).then(function (data) {
-            $scope.posts = data;
-        });
-
-        PostService.getUserDetails(userId).then(function (data) {
-            $scope.user = data;
-        });
-
-        PostService.getUserLikes(userId).then(function (data) {
-            $scope.likes = data;
-        });
-
-        $scope.getUserLikes = function (userId) {
-            //we need to do this in order to prevent the back to change
-            $ionicHistory.currentView($ionicHistory.backView());
-            $ionicHistory.nextViewOptions({ disableAnimate: true });
-
-            $state.go('app.profile.likes', { userId: userId });
-        };
-
-        $scope.getUserPosts = function (userId) {
-            //we need to do this in order to prevent the back to change
-            $ionicHistory.currentView($ionicHistory.backView());
-            $ionicHistory.nextViewOptions({ disableAnimate: true });
-
-            $state.go('app.profile.posts', { userId: userId });
-        };
-*/
+        /*
+                PostService.getUserPosts(userId).then(function (data) {
+                    $scope.posts = data;
+                });
+        
+                PostService.getUserDetails(userId).then(function (data) {
+                    $scope.user = data;
+                });
+        
+                PostService.getUserLikes(userId).then(function (data) {
+                    $scope.likes = data;
+                });
+        
+                $scope.getUserLikes = function (userId) {
+                    //we need to do this in order to prevent the back to change
+                    $ionicHistory.currentView($ionicHistory.backView());
+                    $ionicHistory.nextViewOptions({ disableAnimate: true });
+        
+                    $state.go('app.profile.likes', { userId: userId });
+                };
+        
+                $scope.getUserPosts = function (userId) {
+                    //we need to do this in order to prevent the back to change
+                    $ionicHistory.currentView($ionicHistory.backView());
+                    $ionicHistory.nextViewOptions({ disableAnimate: true });
+        
+                    $state.go('app.profile.posts', { userId: userId });
+                };
+        */
     })
 
     .controller('HomeCtrl', function ($scope, $rootScope, ExchangesRateService, $ionicModal, currencyFormatService, $timeout, AuthService, ExchangeService, googleMapService) {
         $scope.exchangesRate = [];
         $scope.dataExchange = {};
-        $scope.currencys = currencyFormatService.getCurrencies();
+        var defaultCurrency = currencyFormatService.getCurrencies();
+        $scope.currencys = [];
+        for (var key in defaultCurrency) {
+            $scope.currencys.push({
+                base: key,
+                fractionSize: defaultCurrency[key].fractionSize,
+                name: defaultCurrency[key].name,
+                symbol: defaultCurrency[key].symbol,
+                uniqSymbol: defaultCurrency[key].uniqSymbol
+            })
+        }
+
+        $scope.onFromSelected = function (item) {
+            $scope.dataExchange.currency_from = item.base;
+            $scope.getLate();
+        };
+        $scope.onFromInvalid = function () {
+            $scope.dataExchange.currency_to1 = null;
+            $scope.dataExchange.amount_to = null;
+        };
+
+        $scope.chkCurrency = function () {
+            $scope.dataExchange.currency_to1 = null;
+            $scope.dataExchange.amount_to = null;
+        };
+
+
+        $scope.onToSelected = function (item) {
+            $scope.dataExchange.currency_to1 = item.base;
+            $scope.getamount(item);
+        };
+        $scope.onToInvalid = function () {
+            // alert('no select');
+        };
 
         ExchangesRateService.getExchangesRate('THB').then(function (data) {
             $scope.base = data.base;
@@ -125,7 +158,14 @@ angular.module('your_app_name.app.controllers', [])
         $scope.getLate = function () {
             ExchangesRateService.getExchangesRate($scope.dataExchange.currency_from)
                 .then(function (success) {
-                    $scope.exchangeto = success.rates;
+                    var defaultCurrency = success.rates;
+                    $scope.exchangeto = [];
+                    defaultCurrency.forEach(function (current) {
+                        $scope.exchangeto.push({
+                            base: current.currency,
+                            value: current.value
+                        })
+                    });
                 })
         }
         $scope.getamount = function (ex) {
@@ -133,7 +173,7 @@ angular.module('your_app_name.app.controllers', [])
 
             $scope.dataExchange.amount_to = $scope.dataExchange.amount_from / $scope.dataExchange.rate;
             if (ex) {
-                $scope.dataExchange.currency_to = ex.currency;
+                $scope.dataExchange.currency_to = ex.base;
             }
 
         }
