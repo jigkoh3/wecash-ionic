@@ -17,6 +17,7 @@
     "angular-filter": "^0.5.16",
     "ion-google-place": "^0.0.1",
     "ion-place-autocomplete": "*",
+    "ngCordova": "^0.1.27-alpha",
     "satellizer": "^0.15.5"
   }
 }
