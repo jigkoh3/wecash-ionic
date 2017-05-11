@@ -1,42 +1,46 @@
 <ion-view class="shop-home-view" cache-view="false" view-title="Detail">
-    <ion-content>
-        <div style="background-color: gray; height: 160px;  margin: 24px">
+    <ion-content class="bg-detail">
+        <div class="text-center">
+            <div class="map-detail">
+            </div>
+            <h4>{{exchange.user.displayName}}</h4>
         </div>
         <div class="list">
-            <a class="item item-icon-left" href="#">
-                <i class="icon ion-mic-a"></i> From
+            <a class="item item-icon-left">
+                <i class="icon ion-cash"></i> From
                 <span class="item-note">
-                Grammy
+                {{exchange.currency_from}}
                 </span>
             </a>
-            <a class="item item-icon-left" href="#">
-                <i class="icon ion-mic-a"></i> Record album
+            <a class="item item-icon-left">
+                <i class="icon ion-cash"></i>
                 <span class="item-note">
-                Grammy
+                {{exchange.amount_from}}
                 </span>
             </a>
-            <a class="item item-icon-left" href="#">
-                <i class="icon ion-mic-a"></i> To
+            <a class="item item-icon-left">
+                <i class="icon ion-cash"></i> To
                 <span class="item-note">
-                Grammy
+                {{exchange.currency_to}}
                 </span>
             </a>
-            <a class="item item-icon-left" href="#">
-                <i class="icon ion-mic-a"></i> Amount
+            <a class="item item-icon-left">
+                <i class="icon ion-cash"></i> Amount
                 <span class="item-note">
-                Grammy
+                {{exchange.amount_to}}
                 </span>
             </a>
-            <a class="item item-icon-left" href="#">
-                <i class="icon ion-mic-a"></i> Location
-                <span class="item-note">
-                Grammy
+            <a class="item item-icon-left">
+                <i class="icon ion-location"></i> Location
+                <!-- <p>{{exchange.location.name}}</p> -->
+                <span class="item-note location-detail">
+                    {{exchange.location.address}}
                 </span>
             </a>
-            <a class="item item-icon-left" href="#">
-                <i class="icon ion-mic-a"></i> Schedule
+            <a class="item item-icon-left">
+                <i class="icon ion-calendar"></i> Schedule
                 <span class="item-note">
-                01/01/2560
+                {{exchange.created | date:'dd/MM/YYYY'}}
                 </span>
             </a>
         </div>
