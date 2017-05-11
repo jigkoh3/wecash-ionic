@@ -16,6 +16,7 @@
     "angular-currency-format": "^1.0.6",
     "angular-filter": "^0.5.16",
     "ion-google-place": "^0.0.1",
-    "ion-place-autocomplete": "*"
+    "ion-place-autocomplete": "*",
+    "satellizer": "^0.15.5"
   }
 }
