@@ -410,39 +410,49 @@ angular.module('your_app_name.app.controllers', [])
 
     var exchangeId = $stateParams.exchangeId;
     $scope.exchange = {};
+    $scope.map = null;
+
     ExchangeService.getExchange(exchangeId).then(function(res) {
         $scope.exchange = res;
+
+        var options = { timeout: 10000, enableHighAccuracy: true };
+
+        $cordovaGeolocation.getCurrentPosition(options).then(function(position) {
+
+            var latLng = null;
+            if (!$scope.exchange.location) {
+                latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            } else {
+                latLng = new google.maps.LatLng($scope.exchange.location.lat, $scope.exchange.location.lng);
+            }
+            var mapOptions = {
+                center: latLng,
+                zoom: 15,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            $scope.map = new google.maps.Map(document.getElementById("mapDetail"), mapOptions);
+
+
+            if ($scope.exchange.location) {
+                google.maps.event.addListenerOnce($scope.map, 'idle', function() {
+
+                    var marker = new google.maps.Marker({
+                        map: $scope.map,
+                        animation: google.maps.Animation.DROP,
+                        position: latLng
+                    });
+
+                });
+            }
+
+        }, function(error) {
+            console.log("Could not get location");
+        });
+
     }, function(err) {
         alert(JSON.stringify(err));
     });
-
-    var options = { timeout: 10000, enableHighAccuracy: true };
-
-    $cordovaGeolocation.getCurrentPosition(options).then(function(position) {
-
-        var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-        var mapOptions = {
-            center: latLng,
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-    }, function(error) {
-        console.log("Could not get location");
-    });
-
-    // google.maps.event.addListenerOnce($scope.map, 'idle', function() {
-
-    //     var marker = new google.maps.Marker({
-    //         map: $scope.map,
-    //         animation: google.maps.Animation.DROP,
-    //         position: latLng
-    //     });
-
-    // });
 
 })
 
