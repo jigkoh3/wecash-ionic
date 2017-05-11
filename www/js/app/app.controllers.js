@@ -366,6 +366,11 @@ angular.module('your_app_name.app.controllers', [])
                 $scope.dataExchange.location.address = location.description;
             });
     };
+
+    $scope.getSymbolByCode = function(currency){
+       return currencyFormatService.getByCode(currency).symbol.grapheme;
+    };
+    
     $scope.getExchanges();
 
 })
