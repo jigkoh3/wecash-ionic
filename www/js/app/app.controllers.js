@@ -427,7 +427,7 @@ angular.module('your_app_name.app.controllers', [])
             }
             var mapOptions = {
                 center: latLng,
-                zoom: 15,
+                zoom: 17,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
