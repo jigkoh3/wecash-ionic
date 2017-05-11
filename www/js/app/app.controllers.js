@@ -94,6 +94,10 @@ angular.module('your_app_name.app.controllers', [])
             $scope.dataExchange.amount_to = null;
         };
 
+        $scope.chkCurrencyTo = function () {
+            $scope.dataExchange.amount_to = null;
+        };
+
 
         $scope.onToSelected = function (item) {
             $scope.dataExchange.currency_to1 = item.base;
@@ -102,6 +106,17 @@ angular.module('your_app_name.app.controllers', [])
         $scope.onToInvalid = function () {
             // alert('no select');
         };
+<<<<<<< HEAD
+*/
+    })
+
+    .controller('HomeCtrl', function ($scope, $rootScope, ExchangesRateService, $ionicModal, currencyFormatService, $timeout, AuthService, ExchangeService, googleMapService) {
+        $scope.exchangesRate = [];
+        $scope.dataExchange = {};
+        $scope.currencys = currencyFormatService.getCurrencies();
+        console.log($scope.listExchanges);
+=======
+>>>>>>> 23aef73392606a120e5324fb2e9dff344cebf21a
 
         ExchangesRateService.getExchangesRate('THB').then(function (data) {
             $scope.base = data.base;
