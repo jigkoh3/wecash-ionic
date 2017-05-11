@@ -68,7 +68,45 @@ angular.module('your_app_name.app.controllers', [])
 .controller('HomeCtrl', function($scope, $rootScope, ExchangesRateService, $ionicModal, currencyFormatService, $timeout, AuthService, ExchangeService, googleMapService) {
     $scope.exchangesRate = [];
     $scope.dataExchange = {};
-    $scope.currencys = currencyFormatService.getCurrencies();
+    var defaultCurrency = currencyFormatService.getCurrencies();
+    $scope.currencys = [];
+    for (var key in defaultCurrency) {
+        $scope.currencys.push({
+            base: key,
+            fractionSize: defaultCurrency[key].fractionSize,
+            name: defaultCurrency[key].name,
+            symbol: defaultCurrency[key].symbol,
+            uniqSymbol: defaultCurrency[key].uniqSymbol
+        })
+    }
+
+    $scope.onFromSelected = function(item) {
+        $scope.dataExchange.currency_from = item.base;
+        $scope.getLate();
+    };
+    $scope.onFromInvalid = function() {
+        $scope.dataExchange.currency_to1 = null;
+        $scope.dataExchange.amount_to = null;
+    };
+
+    $scope.chkCurrency = function() {
+        $scope.dataExchange.currency_to1 = null;
+        $scope.dataExchange.amount_to = null;
+    };
+
+    $scope.chkCurrencyTo = function() {
+        $scope.dataExchange.amount_to = null;
+    };
+
+
+    $scope.onToSelected = function(item) {
+        $scope.dataExchange.currency_to1 = item.base;
+        $scope.getamount(item);
+    };
+    $scope.onToInvalid = function() {
+        // alert('no select');
+    };
+
     ExchangesRateService.getExchangesRate('THB').then(function(data) {
         $scope.base = data.base;
         $scope.exchangesRate = data.rates;
@@ -126,12 +164,14 @@ angular.module('your_app_name.app.controllers', [])
             .then(function(success) {
                 var defaultCurrency = success.rates;
                 $scope.exchangeto = [];
-                defaultCurrency.forEach(function(current) {
-                    $scope.exchangeto.push({
-                        base: current.currency,
-                        value: current.value
-                    })
-                });
+                if (defaultCurrency) {
+                    defaultCurrency.forEach(function(current) {
+                        $scope.exchangeto.push({
+                            base: current.currency,
+                            value: current.value
+                        })
+                    });
+                }
             })
     }
     $scope.getamount = function(ex) {
@@ -328,46 +368,6 @@ angular.module('your_app_name.app.controllers', [])
     };
     $scope.getExchanges();
 
-    $scope.exchangesRate = [];
-    $scope.dataExchange = {};
-    var defaultCurrency = currencyFormatService.getCurrencies();
-    $scope.currencys = [];
-    for (var key in defaultCurrency) {
-        $scope.currencys.push({
-            base: key,
-            fractionSize: defaultCurrency[key].fractionSize,
-            name: defaultCurrency[key].name,
-            symbol: defaultCurrency[key].symbol,
-            uniqSymbol: defaultCurrency[key].uniqSymbol
-        })
-    }
-
-    $scope.onFromSelected = function(item) {
-        $scope.dataExchange.currency_from = item.base;
-        $scope.getLate();
-    };
-    $scope.onFromInvalid = function() {
-        $scope.dataExchange.currency_to1 = null;
-        $scope.dataExchange.amount_to = null;
-    };
-
-    $scope.chkCurrency = function() {
-        $scope.dataExchange.currency_to1 = null;
-        $scope.dataExchange.amount_to = null;
-    };
-
-    $scope.chkCurrencyTo = function() {
-        $scope.dataExchange.amount_to = null;
-    };
-
-
-    $scope.onToSelected = function(item) {
-        $scope.dataExchange.currency_to1 = item.base;
-        $scope.getamount(item);
-    };
-    $scope.onToInvalid = function() {
-        // alert('no select');
-    };
 })
 
 .controller('SettingsCtrl', function($rootScope, $scope, $state, $ionicModal, AuthService) {
@@ -405,7 +405,8 @@ angular.module('your_app_name.app.controllers', [])
 
 })
 
-.controller('ExchangeCtrl', function($scope, $stateParams,ExchangeService) {
+
+.controller('ExchangeCtrl', function($scope, $stateParams, ExchangeService) {
 
     var exchangeId = $stateParams.exchangeId;
 

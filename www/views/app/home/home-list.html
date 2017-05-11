@@ -39,21 +39,21 @@
                             <div class="item item-body">
                                 <div class="row">
                                     <div class="col">
-                                        <!--<pre-img ratio="_2_1" helper-class="shop-home-option-image-outer">
+                                        <pre-img ratio="_2_1" helper-class="shop-home-option-image-outer">
                                             <img class="img-macth" ng-src="{{ex.user.profileImageURL}}" spinner-on-load>
-                                        </pre-img>-->
+                                        </pre-img>
                                     </div>
                                     <div class="col text-left">                                                       
-                                        <p class="des"><b>{{ex.currence_from}}</b> </p>
-                                        <p class="des">{{ex.amount_from | number:2}}</p>
-                                        <p class="des"><b>{{ex.currence_to}}</b></p>
+                                        <!--<p class="des"><b>{{ex.currency_from}}</b> </p>-->
+                                        <h2 class="des">{{ex.amount_from | number:2}}</h2>
+                                        <p class="des"><b>{{ex.currency_to}}</b></p>
                                         <p class="des">{{ex.amount_to | number:2}}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="item item-body">
-                                <h2 class="card-title text-center">{{ex.user.displayName}}</h2>
-                                <p class="card-description"><b>{{ex.lacation.des}}</b>
+                                <h2 class="card-title">{{ex.user.displayName ? ex.user.displayName : '-'}}</h2>
+                                <p class="card-description"><b>{{ex.location.name ? ex.location.name : '-' }}</b>
                                     <p class="card-description"><b>35.1 km</b>
                             </div>
                         </div>
