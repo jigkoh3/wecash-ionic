@@ -1,7 +1,6 @@
 <ion-modal-view>
   <ion-header-bar class="bar bar-header">
     <h1 class="title">Add</h1>
-    {{$scope.dataExchange}}
     <a class="button button-clear" ng-click="closeList()"><span class="icon ion-close"></span></a>
   </ion-header-bar>
   <ion-content>
@@ -46,7 +45,7 @@
   <div class="bar bar-footer footer-bottom">
     <div class="row menu-bottom-options">
       <div class="col col-bottom">
-        <button class="button button-full button-success button-text" ng-click="post()">Submit</button>
+        <button class="button button-full button-success button-text" ng-disabled="!dataExchange.currency_from || !dataExchange.amount_from || !dataExchange.currency_to1 || !dataExchange.schedule" ng-click="post()">Submit</button>
       </div>
       <div class="col col-bottom">
         <button class="button button-full button-danger button-text" ng-click="closeList()">Cancel</button>
