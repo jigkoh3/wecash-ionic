@@ -84,3 +84,35 @@
 .div-scroll {
     margin-top: 30px;
 }
+
+.bg-detail {
+    background-color: #FFF;
+}
+
+.map-detail {
+    background-color: #F5F5F5;
+    height: 160px;
+    margin: 24px
+}
+
+.location-detail {
+    width: 200px;
+    word-break: break-all;
+    white-space: normal;
+}
+
+.color-detail {
+    color: rgb(42, 201, 170);
+}
+
+.call-detail {
+    color: #4CAF50;
+}
+
+.chat-detail {
+    color: #F44336;
+}
+
+.profile-image-detail {
+    width: 80px;
+}

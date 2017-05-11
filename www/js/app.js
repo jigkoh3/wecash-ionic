@@ -157,6 +157,16 @@ angular.module('your_app_name', [
                 }
             })
 
+            .state('app.more', {
+                url: "/more/:more",
+                views: {
+                    'menuContent': {
+                        templateUrl: "views/app/home/more.html",
+                        controller: 'HomeCtrl'
+                    }
+                }
+            })
+
 
             .state('home-post-location', {
                 url: "/home-post-location",

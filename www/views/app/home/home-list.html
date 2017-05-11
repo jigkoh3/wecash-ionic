@@ -12,9 +12,9 @@
                         </pre-img>
                     </div>
                 </div>
-                <div class="row option-copy">
+                <div class="row option-copy" ng-click="gotoSeeAll()">
                     <div class="col col-75">
-                        <span>Shop Now</span>
+                        <span>See All</span>
                     </div>
                     <div class="col col-25 option-icon">
                         <i class="icon ion-chevron-right"></i>
@@ -29,7 +29,7 @@
                 
                 <span class="title-copy">{{ key }}</span>
                 <span class="currency-flag currency-flag-{{key | lowercase}}"></span> 
-                <a class="button button-small button-dark section-action" ui-sref="app.exchange-more({cate: cate.name})">More</a>
+                <a class="button button-small button-dark section-action" ui-sref="app.more({more: key})">More</a>
             </div>
             <ion-scroll direction="x" class="wide-as-needed" scroll="true" overflow-scroll="{{scroll === true ? 'true': scroll === false ? 'false' : 'true'}}">
                 <div class="row shop-products-narrow-cards-outer shop-product-cards-scroller" style="width: 500px;">
