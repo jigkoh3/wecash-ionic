@@ -1,5 +1,10 @@
-<ion-view view-title="{{cateMore ? 'More '+ cateMore : 'See All'}}" class="shop-home-view">
+<ion-view view-title="{{cateMore ? 'More '+ cateMore : 'See All'}}" class="shop-home-view" ng-init="getMapMore()" cache-view="false">
     <ion-content>
+        <div class="list">
+            <div class="item map-more">
+                <div class="map-detail" id="mapMore" data-tap-disabled="true"></div>
+            </div>
+        </div>
         <div class="list" ng-repeat="(key, value) in listExchanges | filter: { currency_from : cateMore } | groupBy: 'currency_from'">
             <span class="title-copy">{{ key }}</span>
             <span class="currency-flag currency-flag-{{key | lowercase}}"></span>
@@ -9,10 +14,8 @@
                 <p>{{ex.location.name ? ex.location.name : '-' }}</p>
                 <p>{{ex.amount_from | number:2}}</p>
                 <p>{{ex.currency_to}}</p>
-                <p>{{ex.amount_to | number:2}}</p>                
+                <p>{{ex.amount_to | number:2}}</p>
             </a>
         </div>
-
-
     </ion-content>
 </ion-view>
