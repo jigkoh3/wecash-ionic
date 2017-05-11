@@ -413,7 +413,6 @@ angular.module('your_app_name.app.controllers', [])
 
 
     .controller('ExchangeCtrl', function ($scope, $stateParams, ExchangeService, $cordovaGeolocation) {
-
         var exchangeId = $stateParams.exchangeId;
         $scope.exchange = {};
         $scope.map = null;
