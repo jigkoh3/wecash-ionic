@@ -406,15 +406,43 @@ angular.module('your_app_name.app.controllers', [])
 })
 
 
-.controller('ExchangeCtrl', function($scope, $stateParams, ExchangeService) {
+.controller('ExchangeCtrl', function($scope, $stateParams, ExchangeService, $cordovaGeolocation) {
 
     var exchangeId = $stateParams.exchangeId;
     $scope.exchange = {};
-    ExchangeService.getExchange(exchangeId).then(function(res){
+    ExchangeService.getExchange(exchangeId).then(function(res) {
         $scope.exchange = res;
-    },function(err){
+    }, function(err) {
         alert(JSON.stringify(err));
     });
+
+    var options = { timeout: 10000, enableHighAccuracy: true };
+
+    $cordovaGeolocation.getCurrentPosition(options).then(function(position) {
+
+        var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+        var mapOptions = {
+            center: latLng,
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    }, function(error) {
+        console.log("Could not get location");
+    });
+
+    // google.maps.event.addListenerOnce($scope.map, 'idle', function() {
+
+    //     var marker = new google.maps.Marker({
+    //         map: $scope.map,
+    //         animation: google.maps.Animation.DROP,
+    //         position: latLng
+    //     });
+
+    // });
 
 })
 

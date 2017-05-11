@@ -1,8 +1,7 @@
 <ion-view class="shop-home-view" cache-view="false" view-title="Detail">
     <ion-content class="bg-detail">
         <div class="text-center">
-            <div class="map-detail">
-            </div>
+             <div class="map-detail" id="map" data-tap-disabled="true"></div>
             <h4>{{exchange.user.displayName}}</h4>
         </div>
         <div class="list">
@@ -13,9 +12,9 @@
                 </span>
             </a>
             <a class="item item-icon-left">
-                <i class="icon ion-cash"></i>
+                <!-- <i class="icon ion-cash"></i> -->
                 <span class="item-note">
-                {{exchange.amount_from}}
+                {{exchange.amount_from  | number:2}}
                 </span>
             </a>
             <a class="item item-icon-left">
@@ -25,9 +24,9 @@
                 </span>
             </a>
             <a class="item item-icon-left">
-                <i class="icon ion-cash"></i> Amount
+                <i class="icon ion-calculator"></i> Amount
                 <span class="item-note">
-                {{exchange.amount_to}}
+                {{exchange.amount_to | number:2}}
                 </span>
             </a>
             <a class="item item-icon-left">
@@ -40,7 +39,7 @@
             <a class="item item-icon-left">
                 <i class="icon ion-calendar"></i> Schedule
                 <span class="item-note">
-                {{exchange.created | date:'dd/MM/YYYY'}}
+                {{exchange.created | date:'dd/MM/yyyy'}}
                 </span>
             </a>
         </div>
