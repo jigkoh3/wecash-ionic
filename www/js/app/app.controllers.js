@@ -94,6 +94,10 @@ angular.module('your_app_name.app.controllers', [])
             $scope.dataExchange.amount_to = null;
         };
 
+        $scope.chkCurrencyTo = function () {
+            $scope.dataExchange.amount_to = null;
+        };
+
 
         $scope.onToSelected = function (item) {
             $scope.dataExchange.currency_to1 = item.base;
