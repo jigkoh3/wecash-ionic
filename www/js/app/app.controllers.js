@@ -69,6 +69,7 @@ angular.module('your_app_name.app.controllers', [])
         $scope.exchangesRate = [];
         $scope.dataExchange = {};
         $scope.currencys = currencyFormatService.getCurrencies();
+        console.log($scope.listExchanges);
 
         ExchangesRateService.getExchangesRate('THB').then(function (data) {
             $scope.base = data.base;
