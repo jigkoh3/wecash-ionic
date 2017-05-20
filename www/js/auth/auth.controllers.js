@@ -4,7 +4,7 @@ angular.module('your_app_name.auth.controllers', [])
 
 })
 
-.controller('WelcomeCtrl', function($rootScope, $scope, $ionicModal, show_hidden_actions, $state, AuthService){
+.controller('WelcomeCtrl', function($rootScope, $scope, $ionicModal, show_hidden_actions, $state, AuthService, $ionicLoading){
 	AuthService.saveUser(null);
 	$scope.show_hidden_actions = show_hidden_actions;
 
@@ -15,14 +15,17 @@ angular.module('your_app_name.auth.controllers', [])
 	$rootScope.$on('userLoggedIn', function(e, data){
 		AuthService.saveUser(data);
 		$state.go('app.home.list');
+		$ionicLoading.hide();
 	});
 
 	$rootScope.$on('userFailedLogin', function(e, error){
+		$ionicLoading.hide();				
 		alert(error.message);
 	});
 
 	$scope.facebookSignIn = function(){
 		console.log("doing facebbok sign in");
+		$ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">Loading...</p>' })
 		AuthService.authenticate('facebook');
 		// $state.go('app.feed');
 	};
@@ -60,35 +63,41 @@ angular.module('your_app_name.auth.controllers', [])
   };
 })
 
-.controller('LogInCtrl', function($rootScope, $scope, $state, AuthService){
+.controller('LogInCtrl', function($rootScope, $scope, $state, AuthService, $ionicLoading){
 	$scope.user = {};
 	$rootScope.$on('userLoggedIn', function(e, data){
 		AuthService.saveUser(data);
 		$state.go('app.shop.home');
+		$ionicLoading.hide();		
 	});
 
 	$rootScope.$on('userFailedLogin', function(e, error){
+		$ionicLoading.hide();				
 		alert(error.message);
 	});
 	$scope.doLogIn = function(){
 		console.log("doing log in");
+		$ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">Loading...</p>' })		
 		AuthService.logIn($scope.user);
 	};
 })
 
-.controller('SignUpCtrl', function($rootScope, $scope, $state, AuthService){
+.controller('SignUpCtrl', function($rootScope, $scope, $state, AuthService, $ionicLoading){
 	$scope.user = {};
 	$rootScope.$on('userLoggedIn', function(e, data){
 		AuthService.saveUser(data);
 		$state.go('app.shop.home');
+		$ionicLoading.hide();				
 	});
 
 	$rootScope.$on('userFailedLogin', function(e, error){
+		$ionicLoading.hide();				
 		alert(error.message);
 	});
 
 	$scope.doSignUp = function(){
 		console.log("doing sign up");
+		$ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">Loading...</p>' })				
 		AuthService.signUp($scope.user);
 	};
 })
