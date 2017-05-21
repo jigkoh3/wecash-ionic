@@ -54,13 +54,10 @@ angular.module('your_app_name', [
 
             function successCallback(result) {
                 console.log(result);
-                alert(JSON.stringify(result));
-                alert(result.phoneNumber);
             }
 
             function errorCallback(error) {
                 console.log(error);
-                alert(JSON.stringify(error));
             }
 
             // Android only: check permission 

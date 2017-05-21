@@ -559,6 +559,7 @@ angular.module('your_app_name.app.controllers', [])
         };
 
         $scope.openGMap = function() {
+            alert($scope.exchange.location.lat + ',' + $scope.exchange.location.lng)
 //             if ionic.Platform.isIOS()
 //     window.open("http://maps.apple.com/?q=#{text}&ll=#{lat},#{long}&near=#{lat},#{long}", '_system', 'location=yes')  
 //   else
