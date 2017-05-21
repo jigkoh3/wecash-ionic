@@ -394,7 +394,7 @@ angular.module('your_app_name.app.controllers', [])
 
                     var mapOptions = {
                         center: latLng,
-                        zoom: 13,
+                        zoom: 10,
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                     };
 
@@ -553,6 +553,19 @@ angular.module('your_app_name.app.controllers', [])
             $ionicLoading.hide();
             alert(JSON.stringify(err));
         });
+
+        $scope.phoneCall = function () {
+            window.location = 'tel:' + $scope.exchange.tel;
+        };
+
+        $scope.openGMap = function() {
+//             if ionic.Platform.isIOS()
+//     window.open("http://maps.apple.com/?q=#{text}&ll=#{lat},#{long}&near=#{lat},#{long}", '_system', 'location=yes')  
+//   else
+//     window.open("geo:#{lat},#{long}?q=#{text}", '_system', 'location=yes')
+            window.location = 'geo:' + $scope.exchange.location.lat + ',' + $scope.exchange.location.lng;
+            //window.open("http://maps.apple.com/?ll=#{$scope.exchange.location.lat},#{$scope.exchange.location.lng}&near=#{$scope.exchange.location.lat},#{$scope.exchange.location.lng}", '_system', 'location=yes')
+        };
 
     })
 

@@ -24,6 +24,11 @@
                 <!-- <input type="number"  ng-model="dataExchange.amount_to"> -->
                 <label>{{dataExchange.amount_to | number : 2}}</label>
       </label>
+      <label class="item item-input">
+                <span class="input-label">Phone No.</span>
+                 <input type="number" ng-model="dataExchange.tel"> 
+                <!--<label>{{dataExchange.tel}}</label>-->
+      </label>
       <ion-google-place placeholder="Your address" ng-model="place"  location-changed="locationChanged"
       />
       <label class="item item-input">
