@@ -158,6 +158,7 @@ angular.module('your_app_name.app.controllers', [])
         });
 
         $scope.showList = function () {
+            $scope.dataExchange = {};
             $scope.homelist.show();
         };
 
@@ -437,7 +438,6 @@ angular.module('your_app_name.app.controllers', [])
             }, 100);
         }
         $scope.locationChanged = function (location) {
-
             googleMapService.getLocationByPlace(location.place_id)
                 .then(function (data) {
                     console.log(data);
