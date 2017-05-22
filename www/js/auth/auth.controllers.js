@@ -67,7 +67,7 @@ angular.module('your_app_name.auth.controllers', [])
 	$scope.user = {};
 	$rootScope.$on('userLoggedIn', function(e, data){
 		AuthService.saveUser(data);
-		$state.go('app.shop.home');
+		$state.go('app.home.list');
 		$ionicLoading.hide();		
 	});
 
@@ -86,7 +86,7 @@ angular.module('your_app_name.auth.controllers', [])
 	$scope.user = {};
 	$rootScope.$on('userLoggedIn', function(e, data){
 		AuthService.saveUser(data);
-		$state.go('app.shop.home');
+		$state.go('app.home.list');
 		$ionicLoading.hide();				
 	});
 
@@ -105,7 +105,7 @@ angular.module('your_app_name.auth.controllers', [])
 .controller('ForgotPasswordCtrl', function($scope, $state){
 	$scope.requestNewPassword = function() {
     console.log("requesting new password");
-		$state.go('app.shop.home');
+		$state.go('app.home.list');
   };
 })
 

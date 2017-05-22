@@ -19,11 +19,12 @@ angular.module('your_app_name', [
     'currencyFormat',
     'angular.filter',
     'ion-place-tools',
-    'autocomplete.directive'
+    'autocomplete.directive',
+    'btford.socket-io'
 ])
 
     .constant('$config', {
-        apiUrl: 'https://wecash.herokuapp.com/', // your restful API example http://localhost:3000/ 'https://wecashapp.herokuapp.com/'
+        apiUrl: 'https://wecash.herokuapp.com/', // your restful API example http://localhost:3000/ 'https://wecashapp.herokuapp.com/',https://wecash.herokuapp.com/
         redirectUri: 'http://localhost:8100/', // oauth callback url of ionic app example http://localhost:8100/
         facebook: {
             clientId: '274815989655164' // your client id from facebook console example 
@@ -153,6 +154,15 @@ angular.module('your_app_name', [
                     'menuContent': {
                         templateUrl: "views/app/home/detail.html",
                         controller: 'ExchangeCtrl'
+                    }
+                }
+            })
+            .state('app.chat', {
+                url: "/chat:chatId",
+                views: {
+                    'menuContent': {
+                        templateUrl: "views/app/chat/chatroom.html",
+                        controller: 'ChatCtrl'
                     }
                 }
             })
