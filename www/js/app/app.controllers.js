@@ -157,6 +157,7 @@ angular.module('your_app_name.app.controllers', [])
         });
 
         $scope.showList = function () {
+            $scope.dataExchange = {};
             $scope.homelist.show();
         };
 
@@ -392,7 +393,7 @@ angular.module('your_app_name.app.controllers', [])
 
                     var mapOptions = {
                         center: latLng,
-                        zoom: 13,
+                        zoom: 10,
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                     };
 
@@ -436,7 +437,6 @@ angular.module('your_app_name.app.controllers', [])
             }, 100);
         }
         $scope.locationChanged = function (location) {
-
             googleMapService.getLocationByPlace(location.place_id)
                 .then(function (data) {
                     console.log(data);
@@ -582,6 +582,20 @@ angular.module('your_app_name.app.controllers', [])
         });
 
 
+        $scope.phoneCall = function () {
+            window.location = 'tel:' + $scope.exchange.tel;
+        };
+
+        $scope.openGMap = function () {
+            //             if ionic.Platform.isIOS()
+            //     window.open("http://maps.apple.com/?q=#{text}&ll=#{lat},#{long}&near=#{lat},#{long}", '_system', 'location=yes')  
+            //   else
+            var geo = "geo:" + $scope.exchange.location.lat + "," + $scope.exchange.location.lng + "?q=" + $scope.exchange.location.name + "";
+            alert(geo);
+            //window.open(geo, '_system', 'location=yes');
+            window.location = geo;
+            //window.open("http://maps.apple.com/?ll=#{$scope.exchange.location.lat},#{$scope.exchange.location.lng}&near=#{$scope.exchange.location.lat},#{$scope.exchange.location.lng}", '_system', 'location=yes')
+        };
 
     })
 

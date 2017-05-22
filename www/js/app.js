@@ -51,6 +51,25 @@ angular.module('your_app_name', [
             if (window.StatusBar) {
                 StatusBar.styleDefault();
             }
+            window.plugins.sim.getSimInfo(successCallback, errorCallback);
+
+            function successCallback(result) {
+                console.log(result);
+            }
+
+            function errorCallback(error) {
+                console.log(error);
+            }
+
+            // Android only: check permission 
+            function hasReadPermission() {
+                window.plugins.sim.hasReadPermission(successCallback, errorCallback);
+            }
+
+            // Android only: request permission 
+            function requestReadPermission() {
+                window.plugins.sim.requestReadPermission(successCallback, errorCallback);
+            }
         });
 
         // This fixes transitions for transparent background views
@@ -65,7 +84,7 @@ angular.module('your_app_name', [
             }
         });
         $rootScope.$on("$stateChangeSuccess", function (event, toState, toParams, fromState, fromParams) {
-            if (toState.name.indexOf('app.feed') > -1) {
+            if (toState.name.indexOf('app.home.list') > -1) {
                 // Restore platform default transition. We are just hardcoding android transitions to auth views.
                 $ionicConfig.views.transition('platform');
                 // If it's ios, then enable swipe back again

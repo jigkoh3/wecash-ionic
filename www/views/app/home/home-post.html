@@ -12,7 +12,7 @@
                 <input type="text" ng-model="dataExchange.currency_from" ionic-autocomplete="{items: currencys, onSelect: onFromSelected, onDataInvalid: onFromInvalid}" ng-change="chkCurrency()" />
             </label>
       <label class="item item-input">
-                <span class="input-label"></span>
+                <span class="input-label">Amount</span>
                 <input type="number" ng-model="dataExchange.amount_from" ng-change="getamount()">
             </label>
       <label class="item item-input">
@@ -24,13 +24,19 @@
                 <!-- <input type="number"  ng-model="dataExchange.amount_to"> -->
                 <label>{{dataExchange.amount_to | number : 2}}</label>
       </label>
-      <ion-google-place placeholder="Your address" ng-model="place" required name="address" location-changed="locationChanged"
+      <label class="item item-input">
+                <span class="input-label">Phone No.</span>
+                 <input type="number" ng-model="dataExchange.tel"> 
+                <!--<label>{{dataExchange.tel}}</label>-->
+      </label>
+      <ion-google-place placeholder="Your address" ng-model="place"  location-changed="locationChanged"
       />
       <label class="item item-input">
                 <span class="input-label">Schedule</span>
                 <input type="date" ng-model="dataExchange.schedule">
             </label>
     </div>
+    
   </ion-content>
   <!--<div class="bar bar-footer footer-bottom">
     <div class="row menu-bottom-options">
