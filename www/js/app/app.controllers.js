@@ -586,16 +586,40 @@ angular.module('your_app_name.app.controllers', [])
             window.location = 'tel:' + $scope.exchange.tel;
         };
 
-        $scope.openGMap = function () {
-            //             if ionic.Platform.isIOS()
-            //     window.open("http://maps.apple.com/?q=#{text}&ll=#{lat},#{long}&near=#{lat},#{long}", '_system', 'location=yes')  
-            //   else
-            var geo = "geo:" + $scope.exchange.location.lat + "," + $scope.exchange.location.lng + "?q=" + $scope.exchange.location.name + "";
-            alert(geo);
-            //window.open(geo, '_system', 'location=yes');
-            window.location = geo;
-            //window.open("http://maps.apple.com/?ll=#{$scope.exchange.location.lat},#{$scope.exchange.location.lng}&near=#{$scope.exchange.location.lat},#{$scope.exchange.location.lng}", '_system', 'location=yes')
+        $scope.openGMap = function (data) {
+            console.log(data);
+            // var devicePlatform = device.model;
+            // window.localStorage.wecashplatform = devicePlatform;
+            // console.log(data);
+            // var address = data.street + ", " + data.city + ", " + data.state;
+            $scope.Platform = window.localStorage.wecashplatform;
+            var address = data.location.latitude + ", " + data.location.longitude;
+            var text = data.location.address;
+            var url = '';
+            if ($scope.Platform === 'iOS' || $scope.Platform === 'iPhone') {
+                url = "http://maps.apple.com/maps?q=" + encodeURIComponent(text + ',' + address);
+            } else if ($scope.Platform === 'Android' || $scope.Platform === 'IEMobile' || $scope.Platform === 'BlackBerry') {
+                url = "geo:?q=" + encodeURIComponent(text + ',' + address);
+            } else {
+                //this will be used for browsers if we ever want to convert to a website
+                url = "http://maps.google.com?q=" + encodeURIComponent(text + ',' + address);
+                // url = "http://maps.google.com?q=" + 'สยามพารากอน' +',' +'13.7461473' + ',' + '100.5323265';
+            }
+            window.open(url, "_system", 'location=yes');
+            // window.open("http://maps.apple.com/?q=#{text}&ll=#{lat},#{long}&near=#{lat},#{long}", '_system', 'location=yes')
+            // window.open("geo:#{lat},#{long}?q=#{text}", '_system', 'location=yes')
         };
+
+        // $scope.openGMap = function () {
+        //     //             if ionic.Platform.isIOS()
+        //     //     window.open("http://maps.apple.com/?q=#{text}&ll=#{lat},#{long}&near=#{lat},#{long}", '_system', 'location=yes')  
+        //     //   else
+        //     var geo = "geo:" + $scope.exchange.location.lat + "," + $scope.exchange.location.lng + "?q=" + $scope.exchange.location.name + "";
+        //     alert(geo);
+        //     //window.open(geo, '_system', 'location=yes');
+        //     window.location = geo;
+        //     //window.open("http://maps.apple.com/?ll=#{$scope.exchange.location.lat},#{$scope.exchange.location.lng}&near=#{$scope.exchange.location.lat},#{$scope.exchange.location.lng}", '_system', 'location=yes')
+        // };
 
     })
 
@@ -618,7 +642,7 @@ angular.module('your_app_name.app.controllers', [])
         };
         $scope.listRoom();
     })
-    .controller('ChatCtrl', function ($scope, AuthService, Socket, $stateParams, $state, $ionicSideMenuDelegate, ExchangeService, $timeout, $ionicScrollDelegate, roomService ) {
+    .controller('ChatCtrl', function ($scope, AuthService, Socket, $stateParams, $state, $ionicSideMenuDelegate, ExchangeService, $timeout, $ionicScrollDelegate, roomService) {
 
         $scope.$on('$ionicView.enter', function () { $ionicSideMenuDelegate.canDragContent(true); });
         $scope.userStore = AuthService.getLoggedUser();
@@ -644,8 +668,8 @@ angular.module('your_app_name.app.controllers', [])
                     }
                 });
                 $scope.chat = res;
-            alert(JSON.stringify(res));
-                
+                alert(JSON.stringify(res));
+
                 Socket.emit('join', $scope.chat);
             }, function (err) {
                 console.log(err);

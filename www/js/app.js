@@ -24,7 +24,7 @@ angular.module('your_app_name', [
 ])
 
     .constant('$config', {
-        apiUrl: 'http://localhost:3000/', // your restful API example http://localhost:3000/ 'https://wecashapp.herokuapp.com/',https://wecash.herokuapp.com/
+        apiUrl: 'https://wecash.herokuapp.com/', // your restful API example http://localhost:3000/ 'https://wecashapp.herokuapp.com/',https://wecash.herokuapp.com/
         redirectUri: 'http://localhost:8100/', // oauth callback url of ionic app example http://localhost:8100/
         facebook: {
             clientId: '274815989655164' // your client id from facebook console example 
@@ -45,6 +45,9 @@ angular.module('your_app_name', [
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
+            var devicePlatform = ionic.Platform.platform();
+            window.localStorage.wecashplatform = devicePlatform;
+
             if (window.cordova && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             }
@@ -204,7 +207,7 @@ angular.module('your_app_name', [
                     }
                 }
             })
-            
+
             .state('app.more', {
                 url: "/more/:more",
                 views: {
