@@ -668,7 +668,7 @@ angular.module('your_app_name.app.controllers', [])
                     }
                 });
                 $scope.chat = res;
-                alert(JSON.stringify(res));
+                // alert(JSON.stringify(res));
 
                 Socket.emit('join', $scope.chat);
             }, function (err) {
