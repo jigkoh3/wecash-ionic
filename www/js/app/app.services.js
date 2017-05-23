@@ -135,12 +135,13 @@ angular.module('your_app_name.app.services', [])
     })
 
     .service('roomService', function ($http, $q) {
-        var apiURL = 'https://thamapptest.herokuapp.com/api';
+        var apiURL = 'http://localhost:3000/api';
         this.getrooms = function () {
             var dfd = $q.defer();
             var user = (window.localStorage.user) ? JSON.parse(window.localStorage.user) : null;
             $http.get(apiURL + '/chatrooms', user).success(function (data) {
                 // window.localStorage.setItem("storage", JSON.stringify(data));
+                alert(JSON.stringify(data));
                 dfd.resolve(data);
             }).error(function (err) {
                 dfd.reject(err);
@@ -169,7 +170,7 @@ angular.module('your_app_name.app.services', [])
 
     .factory('Socket', function ($rootScope) {
 
-        var url = 'https://wecash.herokuapp.com/';
+        var url = 'http://localhost:3000/';
         var socket = io.connect(url);
         return {
             connect: function () {

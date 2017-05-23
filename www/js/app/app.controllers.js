@@ -599,7 +599,26 @@ angular.module('your_app_name.app.controllers', [])
 
     })
 
-    .controller('ChatCtrl', function ($scope, AuthService, Socket, $stateParams, $state, $ionicSideMenuDelegate, ExchangeService, $timeout, $ionicScrollDelegate) {
+
+
+    .controller('ChatListCtrl', function ($scope, AuthService, roomService, $ionicSideMenuDelegate) {
+
+        $scope.user = AuthService.getLoggedUser();
+        // alert(JSON.stringify($scope.user));
+
+
+        $scope.listRoom = function () {
+            roomService.getrooms().then(function (res) {
+                // alert(JSON.stringify(res));
+                $scope.chats = res;
+            }, function (err) {
+                // alert(JSON.stringify(err));
+                console.log(err);
+            });
+        };
+        $scope.listRoom();
+    })
+    .controller('ChatCtrl', function ($scope, AuthService, Socket, $stateParams, $state, $ionicSideMenuDelegate, ExchangeService, $timeout, $ionicScrollDelegate, roomService ) {
 
         $scope.$on('$ionicView.enter', function () { $ionicSideMenuDelegate.canDragContent(true); });
         $scope.userStore = AuthService.getLoggedUser();
@@ -616,20 +635,22 @@ angular.module('your_app_name.app.controllers', [])
         // });
 
 
-        // $scope.loadRoom = function () {
-        //     var roomId = $stateParams.chatId;
-        //     roomService.getRoom(roomId).then(function (res) {
-        //         res.users.forEach(function (user) {
-        //             if ($scope.user._id != user._id) {
-        //                 $scope.title = user.displayName;
-        //             }
-        //         });
-        //         $scope.chat = res;
-        //         Socket.emit('join', $scope.chat);
-        //     }, function (err) {
-        //         console.log(err);
-        //     });
-        // };
+        $scope.loadRoom = function () {
+            var roomId = $stateParams.chatId;
+            roomService.getRoom(roomId).then(function (res) {
+                res.users.forEach(function (user) {
+                    if ($scope.userStore._id != user._id) {
+                        $scope.title = user.displayName;
+                    }
+                });
+                $scope.chat = res;
+            alert(JSON.stringify(res));
+                
+                Socket.emit('join', $scope.chat);
+            }, function (err) {
+                console.log(err);
+            });
+        };
 
         // Add an event listener to the 'invite' event
         Socket.on('invite', function (res) {
