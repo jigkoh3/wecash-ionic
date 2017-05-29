@@ -10,5 +10,6 @@
     "www/**/*",
     "!www/lib/**/*"
   ],
-  "documentRoot": "www"
+  "documentRoot": "www",
+  "type": "ionic1"
 }
