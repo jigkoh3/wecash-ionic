@@ -1,0 +1,15 @@
+<ion-view view-title="Post" cache-view="false">
+  <ion-content>
+    <div class="list" ng-repeat="(key, value) in listExchanges | filter: { currency_from : cateMore } | groupBy: 'currency_from'">
+      <!--<span class="title-copy" ng-show="value[$index].user._id === userStore._id">{{ key }}</span>
+      <span class="currency-flag currency-flag-{{key | lowercase}}" ng-show="value[$index].user._id === userStore._id"></span>-->
+      <a class="item item-thumbnail-left" ng-repeat="ex in value | filter: {user : {_id : userStore._id}}" ui-sref="app.detail({exchangeId: ex._id})">
+        <img src="{{ex.user.profileImageURL}}">
+        <h2>{{ex.user.displayName ? ex.user.displayName : '-'}}</h2>
+        <p>{{ex.location.name ? ex.location.name : '-' }}</p>
+        <p>{{ex.amount_from | number:2}}</p>
+        <p>{{ex.currency_to}} {{ex.amount_to | number:2}}</p>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>

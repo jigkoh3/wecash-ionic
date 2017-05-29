@@ -45,6 +45,17 @@ angular.module('your_app_name', [
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
+            var push = new Ionic.Push({
+                "debug": true
+            });
+
+            push.register(function (token) {
+                console.log("My Device token:", token.token);
+                prompt("My Device token:", token.token);
+                window.localStorage.token = JSON.stringify(token.token);
+                push.saveToken(token);  // persist the token in the Ionic Platform
+            });
+
             var devicePlatform = ionic.Platform.platform();
             window.localStorage.wecashplatform = devicePlatform;
 
@@ -160,6 +171,8 @@ angular.module('your_app_name', [
                 }
             })
 
+
+
             .state('app.home.rate', {
                 url: "/rate",
                 views: {
@@ -169,6 +182,7 @@ angular.module('your_app_name', [
                     }
                 }
             })
+
             .state('app.home.chatlist', {
                 url: "/chatList",
                 views: {
@@ -265,6 +279,16 @@ angular.module('your_app_name', [
                 views: {
                     'profileContent': {
                         templateUrl: 'views/app/profile/profile.likes.html'
+                    }
+                }
+            })
+
+            .state('app.mepost', {
+                url: "/mepost",
+                views: {
+                    'menuContent': {
+                        templateUrl: "views/app/home/me-post.html",
+                        controller: 'HomeCtrl'
                     }
                 }
             })

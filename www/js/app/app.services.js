@@ -168,6 +168,19 @@ angular.module('your_app_name.app.services', [])
         };
     })
 
+    .service('PushnotiService', function ($http, $q) {
+        var apiURL = 'https://wecash.herokuapp.com/api';
+        this.saveUserPushNoti = function (data) {
+            var dfd = $q.defer();
+            $http.post(apiURL + '/pushnotis', data).success(function (data) {
+                dfd.resolve(data);
+            }).error(function (err) {
+                dfd.reject(err);
+            })
+            return dfd.promise;
+        };
+    })
+
     .factory('Socket', function ($rootScope) {
 
         var url = 'https://wecash.herokuapp.com/';

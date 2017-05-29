@@ -64,9 +64,23 @@ angular.module('your_app_name.app.controllers', [])
         */
     })
 
-    .controller('HomeCtrl', function ($scope, $rootScope, ExchangesRateService, $ionicModal, currencyFormatService, $timeout, AuthService, ExchangeService, googleMapService, $stateParams, $state, $cordovaGeolocation, $ionicLoading) {
+    .controller('HomeCtrl', function ($scope, $rootScope, ExchangesRateService, $ionicModal, currencyFormatService, $timeout, AuthService, ExchangeService, googleMapService, $stateParams, $state, $cordovaGeolocation, $ionicLoading, PushnotiService) {
         $scope.exchangesRate = [];
         $scope.dataExchange = {};
+        $scope.userStore = AuthService.getLoggedUser();
+
+        if ($scope.userStore) {
+            var push_usr = {
+                user_id: $scope.userStore._id,
+                user_name: $scope.userStore.username,
+                role: 'user',
+                device_token: JSON.parse(window.localStorage.token || null)
+            };
+            PushnotiService.saveUserPushNoti(push_usr)
+                .then(function (res) {
+                    alert('save noti success');
+                });
+        }
         var defaultCurrency = currencyFormatService.getCurrencies();
         $scope.currencys = [];
         for (var key in defaultCurrency) {
@@ -623,8 +637,6 @@ angular.module('your_app_name.app.controllers', [])
 
     })
 
-
-
     .controller('ChatListCtrl', function ($scope, AuthService, roomService, $ionicSideMenuDelegate) {
 
         $scope.user = AuthService.getLoggedUser();
@@ -642,6 +654,7 @@ angular.module('your_app_name.app.controllers', [])
         };
         $scope.listRoom();
     })
+
     .controller('ChatCtrl', function ($scope, AuthService, Socket, $stateParams, $state, $ionicSideMenuDelegate, ExchangeService, $timeout, $ionicScrollDelegate, roomService) {
 
         $scope.$on('$ionicView.enter', function () { $ionicSideMenuDelegate.canDragContent(true); });

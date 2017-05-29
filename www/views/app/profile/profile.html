@@ -1,4 +1,4 @@
-<ion-view ng-class="{'own-profile': myProfile}"  class="profile-view" cache-view="false" view-title="Profile">
+<ion-view ng-class="{'own-profile': myProfile}" class="profile-view" cache-view="false" view-title="Profile">
   <ion-content has-bouncing='false' class="profile-content" delegate-handle="profile-scroll">
     <div class="row profile-data">
       <div class="col">
@@ -10,7 +10,7 @@
                 <div class="user-image-outer">
                   <pre-img ratio="_1_1" helper-class="rounded-image">
                     <img class="user-image" ng-src="http:{{loggedUser.profileImageURL}}" spinner-on-load>
-                	</pre-img>
+                  </pre-img>
                 </div>
                 <h2 class="user-name">{{loggedUser.displayName}}</h2>
                 <!--<p class="user-resume">
@@ -47,19 +47,19 @@
         </div>
         <div class="list">
           <a href="tel:*123#">
-          <label class="item item-input item-stacked-label item-icon-right">
+            <label class="item item-input item-stacked-label item-icon-right">
     <label>(650)555-5555</label>
-          <p class="input-profile">MOBILE</p>
-          <i class="icon ion-ios-telephone"></i>
-          </label>
+            <p class="input-profile">MOBILE</p>
+            <i class="icon ion-ios-telephone"></i>
+            </label>
           </a>
 
           <a href="tel:*123#">
-          <label class="item item-input item-stacked-label item-icon-right">
+            <label class="item item-input item-stacked-label item-icon-right">
     <label>(650)555-5555</label>
-          <p class="input-profile">HOME</p>
-          <i class="icon ion-ios-telephone"></i>
-          </label>
+            <p class="input-profile">HOME</p>
+            <i class="icon ion-ios-telephone"></i>
+            </label>
           </a>
         </div>
         <div class="row split-actions" ng-if="myProfile">
@@ -72,12 +72,13 @@
         <div class="row split-actions">
           <div class="col user-interaction">
             <p>
-              <a class="user-interaction-tab" ng-class="{active: ('app.profile.posts' | includedByState)}" nav-transition="none" ng-click="getUserPosts(user._id)" role="tab"><b>{{user.followers}}</b> Posts</a>
+              <a class="user-interaction-tab" ui-sref="app.mepost"> <b>{{user.followers}}</b> Posts</a>
             </p>
           </div>
           <div class="col user-interaction">
             <p>
-              <a class="user-interaction-tab" ng-class="{active: ('app.profile.likes' | includedByState)}" nav-transition="none" ng-click="getUserLikes( user._id)" role="tab"><b>{{user.following}}</b> Likes</a>
+              <a class="user-interaction-tab" ng-class="{active: ('app.profile.likes' | includedByState)}" nav-transition="none" ng-click="getUserBooking(user._id)"
+                role="tab"><b>{{user.following}}</b> Booking</a>
             </p>
           </div>
         </div>
