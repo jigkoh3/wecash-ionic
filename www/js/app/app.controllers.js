@@ -78,7 +78,7 @@ angular.module('your_app_name.app.controllers', [])
             };
             PushnotiService.saveUserPushNoti(push_usr)
                 .then(function (res) {
-                    alert('save noti success');
+                    // alert('save noti success');
                 });
         }
         var defaultCurrency = currencyFormatService.getCurrencies();
