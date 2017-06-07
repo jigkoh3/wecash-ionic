@@ -1,8 +1,9 @@
 angular.module('your_app_name.app.controllers', [])
 
 
-    .controller('AppCtrl', function ($rootScope, $scope, $state, AuthService) {
-
+    .controller('AppCtrl', function ($rootScope, $scope, $state, AuthService, $translate) {
+        var tran = window.localStorage.getItem("language");
+        $translate.use(tran);
         //this will represent our logged user
         var user = AuthService.getLoggedUser();
         $scope.loggedUser = user;
@@ -21,8 +22,9 @@ angular.module('your_app_name.app.controllers', [])
         });
     })
 
-    .controller('ProfileCtrl', function ($scope, $stateParams, $ionicHistory, $state, $ionicScrollDelegate) {
-
+    .controller('ProfileCtrl', function ($scope, $stateParams, $ionicHistory, $state, $ionicScrollDelegate, $translate) {
+        var tran = window.localStorage.getItem("language");
+        $translate.use(tran);
         $scope.$on('$ionicView.afterEnter', function () {
             $ionicScrollDelegate.$getByHandle('profile-scroll').resize();
         });
@@ -64,10 +66,13 @@ angular.module('your_app_name.app.controllers', [])
         */
     })
 
-    .controller('HomeCtrl', function ($scope, $rootScope, ExchangesRateService, $ionicModal, currencyFormatService, $timeout, AuthService, ExchangeService, googleMapService, $stateParams, $state, $cordovaGeolocation, $ionicLoading, PushnotiService) {
+    .controller('HomeCtrl', function ($scope, $rootScope, ExchangesRateService, $ionicModal, currencyFormatService, $timeout, AuthService, ExchangeService, googleMapService, $stateParams, $state, $cordovaGeolocation, $ionicLoading, PushnotiService, $translate) {
+        var tran = window.localStorage.getItem("language");
+        $translate.use(tran);
         $scope.exchangesRate = [];
         $scope.dataExchange = {};
         $scope.userStore = AuthService.getLoggedUser();
+
 
         if ($scope.userStore) {
             var push_usr = {
@@ -228,7 +233,7 @@ angular.module('your_app_name.app.controllers', [])
         };
 
         $scope.post = function () {
-            $ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">Loading...</p>' })
+            $ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">{{"loading" | translate}}</p>' })
 
             // $scope.dataExchange.location = $scope.dataExchange.location || {};
             // if ($rootScope.place) {
@@ -395,7 +400,7 @@ angular.module('your_app_name.app.controllers', [])
         $scope.getExchanges();
 
         $scope.getMapMore = function () {
-            $ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">Loading...</p>' })
+            $ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">{{"loading" | translate}}</p>' })
 
             $scope.markers = [];
             setTimeout(function () {
@@ -473,8 +478,9 @@ angular.module('your_app_name.app.controllers', [])
 
     })
 
-    .controller('SettingsCtrl', function ($rootScope, $scope, $state, $ionicModal, AuthService, $ionicLoading) {
-
+    .controller('SettingsCtrl', function ($rootScope, $scope, $state, $ionicModal, AuthService, $ionicLoading, $translate) {
+        var tran = window.localStorage.getItem("language");
+        $translate.use(tran);
         $ionicModal.fromTemplateUrl('views/app/legal/terms-of-service.html', {
             scope: $scope,
             animation: 'slide-in-up'
@@ -508,7 +514,9 @@ angular.module('your_app_name.app.controllers', [])
 
     })
 
-    .controller('ExchangeCtrl', function ($scope, $stateParams, $state, ExchangeService, $cordovaGeolocation, currencyFormatService, $ionicLoading, Socket, AuthService) {
+    .controller('ExchangeCtrl', function ($scope, $stateParams, $state, ExchangeService, $cordovaGeolocation, currencyFormatService, $ionicLoading, Socket, AuthService, $translate) {
+        var tran = window.localStorage.getItem("language");
+        $translate.use(tran);
         var exchangeId = $stateParams.exchangeId;
         $scope.userStore = AuthService.getLoggedUser();
         $scope.exchange = {};
@@ -526,7 +534,7 @@ angular.module('your_app_name.app.controllers', [])
             var options = { timeout: 10000, enableHighAccuracy: true };
 
             $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
-                $ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">Loading...</p>' })
+                $ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">{{"loading" | translate}}</p>' })
 
 
                 var latLng = null;
@@ -637,8 +645,9 @@ angular.module('your_app_name.app.controllers', [])
 
     })
 
-    .controller('ChatListCtrl', function ($scope, AuthService, roomService, $ionicSideMenuDelegate) {
-
+    .controller('ChatListCtrl', function ($scope, AuthService, roomService, $ionicSideMenuDelegate, $translate) {
+        var tran = window.localStorage.getItem("language");
+        $translate.use(tran);
         $scope.user = AuthService.getLoggedUser();
         // alert(JSON.stringify($scope.user));
 
@@ -655,8 +664,9 @@ angular.module('your_app_name.app.controllers', [])
         $scope.listRoom();
     })
 
-    .controller('ChatCtrl', function ($scope, AuthService, Socket, $stateParams, $state, $ionicSideMenuDelegate, ExchangeService, $timeout, $ionicScrollDelegate, roomService) {
-
+    .controller('ChatCtrl', function ($scope, AuthService, Socket, $stateParams, $state, $ionicSideMenuDelegate, ExchangeService, $timeout, $ionicScrollDelegate, roomService, $translate) {
+        var tran = window.localStorage.getItem("language");
+        $translate.use(tran);
         $scope.$on('$ionicView.enter', function () { $ionicSideMenuDelegate.canDragContent(true); });
         $scope.userStore = AuthService.getLoggedUser();
         // $scope.data = JSON.parse($stateParams.data);

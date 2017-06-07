@@ -1,38 +1,39 @@
 <ion-modal-view>
   <ion-header-bar class="bar bar-header bar-balanced">
     <a class="button button-clear" ng-click="closeList()"><span class="icon ion-close"></span></a>
-    <h1 class="title">Add</h1>
+    <h1 class="title">{{'home-post.add' | translate}}</h1>
     <a class="button button-clear" ng-disabled="!dataExchange.currency_from || !dataExchange.amount_from || !dataExchange.currency_to1 || !dataExchange.schedule || !dataExchange.location"
       ng-click="post()"><span class="icon ion-checkmark-round"></span></a>
   </ion-header-bar>
   <ion-content>
     <div class="list">
       <label class="item item-input">
-                <span class="input-label">From</span>
+                <span class="input-label">{{'home-post.from' | translate}}</span>
                 <input type="text" ng-model="dataExchange.currency_from" ionic-autocomplete="{items: currencys, onSelect: onFromSelected, onDataInvalid: onFromInvalid}" ng-change="chkCurrency()" />
             </label>
       <label class="item item-input">
-                <span class="input-label">Amount</span>
+                <span class="input-label">{{'home-post.fromamount' | translate}}</span>
                 <input type="number" ng-model="dataExchange.amount_from" ng-change="getamount()">
             </label>
       <label class="item item-input">
-                <span class="input-label">To</span>
+                <span class="input-label">{{'home-post.to' | translate}}</span>
                 <input type="text" ng-model="dataExchange.currency_to1" ionic-autocomplete="{items: exchangeto, onSelect: onToSelected, onDataInvalid: onToInvalid}" ng-change="chkCurrencyTo()" />
             </label>
       <label class="item item-input">
-                <span class="input-label">Amount</span>
+                <span class="input-label">{{'home-post.toamount' | translate}}</span>
                 <!-- <input type="number"  ng-model="dataExchange.amount_to"> -->
                 <label>{{dataExchange.amount_to | number : 2}}</label>
       </label>
       <label class="item item-input">
-                <span class="input-label">Phone No.</span>
+                <span class="input-label">{{'home-post.phone' | translate}}</span>
                  <input type="number" ng-model="dataExchange.tel"> 
                 <!--<label>{{dataExchange.tel}}</label>-->
       </label>
-      <ion-google-place placeholder="Your address" ng-model="place"  location-changed="locationChanged"
-      />
+
+      <ion-google-place placeholder="Your address" ng-model="place"  location-changed="locationChanged"/>
+
       <label class="item item-input">
-                <span class="input-label">Schedule</span>
+                <span class="input-label">{{'home-post.schedule' | translate}}</span>
                 <input type="date" ng-model="dataExchange.schedule">
             </label>
     </div>

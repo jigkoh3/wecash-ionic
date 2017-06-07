@@ -20,7 +20,8 @@ angular.module('your_app_name', [
     'angular.filter',
     'ion-place-tools',
     'autocomplete.directive',
-    'btford.socket-io'
+    'btford.socket-io',
+    'pascalprecht.translate'
 ])
 
     .constant('$config', {
@@ -38,6 +39,7 @@ angular.module('your_app_name', [
             $ionicConfigProvider.scrolling.jsScrolling(false);
             $ionicConfigProvider.platform.android.tabs.position('bottom');
         }
+
     })
 
 
@@ -84,6 +86,14 @@ angular.module('your_app_name', [
             function requestReadPermission() {
                 window.plugins.sim.requestReadPermission(successCallback, errorCallback);
             }
+
+            navigator.globalization.getPreferredLanguage(
+                function (language) {
+                    alert('language: ' + language.value + '\n');
+                    window.localStorage.language = language.value;
+                },
+                function () { alert('Error getting language\n'); }
+            );
         });
 
         // This fixes transitions for transparent background views
@@ -110,7 +120,7 @@ angular.module('your_app_name', [
         });
     })
 
-    .config(function ($stateProvider, $urlRouterProvider, $config, $authProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $config, $authProvider, $translateProvider) {
 
         var commonConfig = {
             popupOptions: {
@@ -346,6 +356,106 @@ angular.module('your_app_name', [
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/auth/welcome');
         // $urlRouterProvider.otherwise('/app/feed');
+
+        $translateProvider
+            .translations('en-US', {
+                'home': {
+                    "titlehome": "Home",
+                    "tabhome": "Home",
+                    "tabchat": "Chat",
+                    "tabnewpost": "New Post",
+                    "tabrate": "Rate",
+                    "tabme": "Me"
+                },
+                'home-list':{
+                    "seeall":"See All",
+                    "more":"More"                   
+                },
+                'chat-list':{
+                    "chatlist":"Chat List"
+                },
+                'home-post':{
+                    "add":"Add",
+                    "from":"From",
+                    "fromamount":"Amount",
+                    "to":"To",
+                    "toamount":"Amount",
+                    "phone":"Phone No.",
+                    "schedule":"Schedule",                    
+                },
+                'home-rate':{
+                    "exchangerate":"Exchange Rate",
+                    "search":"Search",
+                    "currency":"Currency",
+                    "rate":"Rate"
+                },
+                'legal-notice':{
+                    "text1":"By Signing up you agree to the",
+                    "text2":"Terms of Service",
+                    "text3":"and",
+                    "text4":"Privacy Policy"
+                },
+                'welcome':{
+                    "facebook":" Facebook",
+                    "signup":"Sign Up",
+                    "login":"Log In",
+                },
+                "Loading":"Loading..."
+
+            })
+            .translations('zh-CN', {
+                'home': {
+                    "titlehome": "家",
+                    "tabhome": "家",
+                    "tabchat": "聊",
+                    "tabnewpost": "新話題",
+                    "tabrate": "率",
+                    "tabme": "我"
+                },
+                'home-list':{
+                    "seeall":"所有",
+                    "more":"其他"                   
+                },
+                'chat-list':{
+                    "chatlist":"聊名單"
+                },
+                'home-post':{
+                    "add":"提高",
+                    "from":"從",
+                    "fromamount":"數",
+                    "to":"至",
+                    "toamount":"數",
+                    "phone":"電話號碼。",
+                    "schedule":"時間表",                    
+                },
+                'home-rate':{
+                    "exchangerate":"匯率",
+                    "search":"搜索",
+                    "currency":"貨幣",
+                    "rate":"率"
+                },
+                'legal-notice':{
+                    "text1":"通過 報名 你同意",
+                    "text2":"服務條款",
+                    "text3":"和",
+                    "text4":"隱私政策"
+                },
+                'welcome':{
+                    "facebook":" 脸书",
+                    "signup":"註冊",
+                    "login":"登錄",
+                },
+                "loading":"載入中..."
+            })
+            .translations('th-TH', {
+                "titlehome": "หน้าหลัก",
+                "tabhome": "หน้าหลัก",
+                "barchat": "พูดคุย"
+            });
+
+        $translateProvider.preferredLanguage('en');
+
     })
+
 
     ;

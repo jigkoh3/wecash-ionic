@@ -20,6 +20,7 @@
     "ion-place-autocomplete": "*",
     "ngCordova": "^0.1.27-alpha",
     "satellizer": "^0.15.5",
-    "angular-socket-io": "^0.7.0"
+    "angular-socket-io": "^0.7.0",
+    "angular-translate": "^2.15.1"
   }
 }
