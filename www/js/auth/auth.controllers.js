@@ -5,8 +5,8 @@ angular.module('your_app_name.auth.controllers', [])
 	})
 
 	.controller('WelcomeCtrl', function ($rootScope, $scope, $ionicModal, show_hidden_actions, $state, AuthService, $ionicLoading, $translate) {
-		var tran = window.localStorage.getItem("language");
-		$translate.use(tran);
+		$scope.tran = window.localStorage.getItem("language");
+		$translate.use($scope.tran);
 		AuthService.saveUser(null);
 		$scope.show_hidden_actions = show_hidden_actions;
 
@@ -27,7 +27,7 @@ angular.module('your_app_name.auth.controllers', [])
 
 		$scope.facebookSignIn = function () {
 			console.log("doing facebbok sign in");
-			$ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">{{"loading" | translate}}</p>' })
+			$ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">{{"loading..." | translate}}</p>' })
 			AuthService.authenticate('facebook');
 			// $state.go('app.feed');
 		};
@@ -66,8 +66,8 @@ angular.module('your_app_name.auth.controllers', [])
 	})
 
 	.controller('LogInCtrl', function ($rootScope, $scope, $state, AuthService, $ionicLoading, $translate) {
-    var tran = window.localStorage.getItem("language");
-    $translate.use(tran);
+		var tran = window.localStorage.getItem("language");
+		$translate.use(tran);
 		$scope.user = {};
 		$rootScope.$on('userLoggedIn', function (e, data) {
 			AuthService.saveUser(data);
@@ -81,14 +81,14 @@ angular.module('your_app_name.auth.controllers', [])
 		});
 		$scope.doLogIn = function () {
 			console.log("doing log in");
-			$ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">{{"loading" | translate}}</p>' })
+			$ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">{{"loading..." | translate}}</p>' })
 			AuthService.logIn($scope.user);
 		};
 	})
 
 	.controller('SignUpCtrl', function ($rootScope, $scope, $state, AuthService, $ionicLoading, $translate) {
-    var tran = window.localStorage.getItem("language");
-    $translate.use(tran);
+		var tran = window.localStorage.getItem("language");
+		$translate.use(tran);
 		$scope.user = {};
 		$rootScope.$on('userLoggedIn', function (e, data) {
 			AuthService.saveUser(data);
@@ -103,7 +103,7 @@ angular.module('your_app_name.auth.controllers', [])
 
 		$scope.doSignUp = function () {
 			console.log("doing sign up");
-			$ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">{{"loading" | translate}}</p>' })
+			$ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">{{"loading..." | translate}}</p>' })
 			AuthService.signUp($scope.user);
 		};
 	})

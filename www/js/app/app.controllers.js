@@ -233,7 +233,7 @@ angular.module('your_app_name.app.controllers', [])
         };
 
         $scope.post = function () {
-            $ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">{{"loading" | translate}}</p>' })
+            $ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">{{"loading..." | translate}}</p>' })
 
             // $scope.dataExchange.location = $scope.dataExchange.location || {};
             // if ($rootScope.place) {
@@ -400,7 +400,7 @@ angular.module('your_app_name.app.controllers', [])
         $scope.getExchanges();
 
         $scope.getMapMore = function () {
-            $ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">{{"loading" | translate}}</p>' })
+            $ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">{{"loading..." | translate}}</p>' })
 
             $scope.markers = [];
             setTimeout(function () {
@@ -534,7 +534,7 @@ angular.module('your_app_name.app.controllers', [])
             var options = { timeout: 10000, enableHighAccuracy: true };
 
             $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
-                $ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">{{"loading" | translate}}</p>' })
+                $ionicLoading.show({ template: '<ion-spinner icon="android"></ion-spinner><p style="margin: 5px 0 0 0;">{{"loading..." | translate}}</p>' })
 
 
                 var latLng = null;

@@ -48,12 +48,12 @@ angular.module('your_app_name', [
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
             var push = new Ionic.Push({
-                "debug": true
+                'debug': true
             });
 
             push.register(function (token) {
-                console.log("My Device token:", token.token);
-                // prompt("My Device token:", token.token);
+                console.log('My Device token:', token.token);
+                // prompt('My Device token:', token.token);
                 window.localStorage.token = JSON.stringify(token.token);
                 push.saveToken(token);  // persist the token in the Ionic Platform
             });
@@ -89,7 +89,7 @@ angular.module('your_app_name', [
 
             navigator.globalization.getPreferredLanguage(
                 function (language) {
-                    alert('language: ' + language.value + '\n');
+                    //alert('language: ' + language.value + '\n');
                     window.localStorage.language = language.value;
                 },
                 function () { alert('Error getting language\n'); }
@@ -97,17 +97,17 @@ angular.module('your_app_name', [
         });
 
         // This fixes transitions for transparent background views
-        $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
             if (toState.name.indexOf('auth.welcome') > -1) {
                 // set transitions to android to avoid weird visual effect in the walkthrough transitions
                 $timeout(function () {
                     $ionicConfig.views.transition('android');
                     $ionicConfig.views.swipeBackEnabled(false);
-                    console.log("setting transition to android and disabling swipe back");
+                    console.log('setting transition to android and disabling swipe back');
                 }, 0);
             }
         });
-        $rootScope.$on("$stateChangeSuccess", function (event, toState, toParams, fromState, fromParams) {
+        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             if (toState.name.indexOf('app.home.list') > -1) {
                 // Restore platform default transition. We are just hardcoding android transitions to auth views.
                 $ionicConfig.views.transition('platform');
@@ -115,7 +115,7 @@ angular.module('your_app_name', [
                 if (ionic.Platform.isIOS()) {
                     $ionicConfig.views.swipeBackEnabled(true);
                 }
-                console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
+                console.log('enabling swipe back and restoring transition to platform default', $ionicConfig.views.transition());
             }
         });
     })
@@ -144,38 +144,38 @@ angular.module('your_app_name', [
 
             //SIDE MENU ROUTES
             .state('app', {
-                url: "/app",
+                url: '/app',
                 abstract: true,
-                templateUrl: "views/app/side-menu.html",
+                templateUrl: 'views/app/side-menu.html',
                 controller: 'AppCtrl'
             })
 
             .state('app.home', {
-                url: "/home",
+                url: '/home',
                 abstract: true,
                 views: {
                     'menuContent': {
-                        templateUrl: "views/app/home.html",
+                        templateUrl: 'views/app/home.html',
                         controller: 'HomeCtrl'
                     }
                 }
             })
 
             .state('app.home.list', {
-                url: "/",
+                url: '/',
                 views: {
                     'home-list': {
-                        templateUrl: "views/app/home/home-list.html",
+                        templateUrl: 'views/app/home/home-list.html',
                         controller: 'HomeCtrl'
                     }
                 }
             })
 
             .state('app.home.post', {
-                url: "/post",
+                url: '/post',
                 views: {
                     'home-post': {
-                        templateUrl: "views/app/home/home-post.html",
+                        templateUrl: 'views/app/home/home-post.html',
                         controller: 'HomeCtrl'
                     }
                 }
@@ -184,59 +184,59 @@ angular.module('your_app_name', [
 
 
             .state('app.home.rate', {
-                url: "/rate",
+                url: '/rate',
                 views: {
                     'home-rate': {
-                        templateUrl: "views/app/home/home-rate.html",
+                        templateUrl: 'views/app/home/home-rate.html',
                         controller: 'HomeCtrl'
                     }
                 }
             })
 
             .state('app.home.chatlist', {
-                url: "/chatList",
+                url: '/chatList',
                 views: {
                     'home-chat': {
-                        templateUrl: "views/app/chat-list/chat-list.html",
+                        templateUrl: 'views/app/chat-list/chat-list.html',
                         controller: 'ChatListCtrl'
                     }
                 }
             })
 
             .state('app.home.more', {
-                url: "/homeMore",
+                url: '/homeMore',
                 views: {
                     'home-more': {
-                        templateUrl: "views/app/home/home-more.html",
+                        templateUrl: 'views/app/home/home-more.html',
                         controller: 'HomeCtrl'
                     }
                 }
             })
 
             .state('app.detail', {
-                url: "/detail/:exchangeId",
+                url: '/detail/:exchangeId',
                 views: {
                     'menuContent': {
-                        templateUrl: "views/app/home/detail.html",
+                        templateUrl: 'views/app/home/detail.html',
                         controller: 'ExchangeCtrl'
                     }
                 }
             })
             .state('app.chat', {
-                url: "/chat/:chatId",
+                url: '/chat/:chatId',
                 views: {
                     'menuContent': {
-                        templateUrl: "views/app/chat/chatroom.html",
+                        templateUrl: 'views/app/chat/chatroom.html',
                         controller: 'ChatCtrl'
                     }
                 }
             })
 
             .state('app.more', {
-                url: "/more/:more",
+                url: '/more/:more',
                 views: {
                     'menuContent': {
-                        templateUrl: "views/app/home/more.html",
+                        templateUrl: 'views/app/home/more.html',
                         controller: 'HomeCtrl'
                     }
                 }
@@ -244,20 +244,20 @@ angular.module('your_app_name', [
 
 
             .state('home-post-location', {
-                url: "/home-post-location",
+                url: '/home-post-location',
                 views: {
                     'menuContent': {
-                        templateUrl: "views/app/home/home-post-location.html",
+                        templateUrl: 'views/app/home/home-post-location.html',
                         controller: 'HomeCtrl'
                     }
                 }
             })
 
             .state('app.all', {
-                url: "/all",
+                url: '/all',
                 views: {
                     'menuContent': {
-                        templateUrl: "views/app/home/all.html",
+                        templateUrl: 'views/app/home/all.html',
                         controller: 'HomeCtrl'
                     }
                 }
@@ -269,7 +269,7 @@ angular.module('your_app_name', [
                 url: '/profile/:userId',
                 views: {
                     'menuContent': {
-                        templateUrl: "views/app/profile/profile.html",
+                        templateUrl: 'views/app/profile/profile.html',
                         controller: 'ProfileCtrl'
                     }
                 }
@@ -294,20 +294,20 @@ angular.module('your_app_name', [
             })
 
             .state('app.mepost', {
-                url: "/mepost",
+                url: '/mepost',
                 views: {
                     'menuContent': {
-                        templateUrl: "views/app/home/me-post.html",
+                        templateUrl: 'views/app/home/me-post.html',
                         controller: 'HomeCtrl'
                     }
                 }
             })
 
             .state('app.settings', {
-                url: "/settings",
+                url: '/settings',
                 views: {
                     'menuContent': {
-                        templateUrl: "views/app/profile/settings.html",
+                        templateUrl: 'views/app/profile/settings.html',
                         controller: 'SettingsCtrl'
                     }
                 }
@@ -316,15 +316,15 @@ angular.module('your_app_name', [
 
             //AUTH ROUTES
             .state('auth', {
-                url: "/auth",
-                templateUrl: "views/auth/auth.html",
-                controller: "AuthCtrl",
+                url: '/auth',
+                templateUrl: 'views/auth/auth.html',
+                controller: 'AuthCtrl',
                 abstract: true
             })
 
             .state('auth.welcome', {
                 url: '/welcome',
-                templateUrl: "views/auth/welcome.html",
+                templateUrl: 'views/auth/welcome.html',
                 controller: 'WelcomeCtrl',
                 resolve: {
                     show_hidden_actions: function () {
@@ -335,19 +335,19 @@ angular.module('your_app_name', [
 
             .state('auth.login', {
                 url: '/login',
-                templateUrl: "views/auth/login.html",
+                templateUrl: 'views/auth/login.html',
                 controller: 'LogInCtrl'
             })
 
             .state('auth.signup', {
                 url: '/signup',
-                templateUrl: "views/auth/signup.html",
+                templateUrl: 'views/auth/signup.html',
                 controller: 'SignUpCtrl'
             })
 
             .state('auth.forgot-password', {
                 url: '/forgot-password',
-                templateUrl: "views/auth/forgot-password.html",
+                templateUrl: 'views/auth/forgot-password.html',
                 controller: 'ForgotPasswordCtrl'
             })
 
@@ -358,99 +358,128 @@ angular.module('your_app_name', [
         // $urlRouterProvider.otherwise('/app/feed');
 
         $translateProvider
-            .translations('en-US', {
-                'home': {
-                    "titlehome": "Home",
-                    "tabhome": "Home",
-                    "tabchat": "Chat",
-                    "tabnewpost": "New Post",
-                    "tabrate": "Rate",
-                    "tabme": "Me"
-                },
-                'home-list':{
-                    "seeall":"See All",
-                    "more":"More"                   
-                },
-                'chat-list':{
-                    "chatlist":"Chat List"
-                },
-                'home-post':{
-                    "add":"Add",
-                    "from":"From",
-                    "fromamount":"Amount",
-                    "to":"To",
-                    "toamount":"Amount",
-                    "phone":"Phone No.",
-                    "schedule":"Schedule",                    
-                },
-                'home-rate':{
-                    "exchangerate":"Exchange Rate",
-                    "search":"Search",
-                    "currency":"Currency",
-                    "rate":"Rate"
-                },
-                'legal-notice':{
-                    "text1":"By Signing up you agree to the",
-                    "text2":"Terms of Service",
-                    "text3":"and",
-                    "text4":"Privacy Policy"
-                },
-                'welcome':{
-                    "facebook":" Facebook",
-                    "signup":"Sign Up",
-                    "login":"Log In",
-                },
-                "Loading":"Loading..."
-
-            })
             .translations('zh-CN', {
-                'home': {
-                    "titlehome": "家",
-                    "tabhome": "家",
-                    "tabchat": "聊",
-                    "tabnewpost": "新話題",
-                    "tabrate": "率",
-                    "tabme": "我"
-                },
-                'home-list':{
-                    "seeall":"所有",
-                    "more":"其他"                   
-                },
-                'chat-list':{
-                    "chatlist":"聊名單"
-                },
-                'home-post':{
-                    "add":"提高",
-                    "from":"從",
-                    "fromamount":"數",
-                    "to":"至",
-                    "toamount":"數",
-                    "phone":"電話號碼。",
-                    "schedule":"時間表",                    
-                },
-                'home-rate':{
-                    "exchangerate":"匯率",
-                    "search":"搜索",
-                    "currency":"貨幣",
-                    "rate":"率"
-                },
-                'legal-notice':{
-                    "text1":"通過 報名 你同意",
-                    "text2":"服務條款",
-                    "text3":"和",
-                    "text4":"隱私政策"
-                },
-                'welcome':{
-                    "facebook":" 脸书",
-                    "signup":"註冊",
-                    "login":"登錄",
-                },
-                "loading":"載入中..."
+                'Home': '家',
+                'Chat': '聊',
+                'New Post': '新話題',
+                'Rate': '率',
+                'Me': '我',
+                'See All': '所有',
+                'More': '其他',
+                'Chat List': '聊名單',
+                'Add': '提高',
+                'From': '從',
+                'Amount': '數',
+                'To': '至',
+                'Phone No.': '電話號碼。',
+                'Schedule': '時間表',
+                'Exchange Rate': '匯率',
+                'Search': '搜索',
+                'Currency': '貨幣',
+                'Australian Dollar': '澳元',
+                'Bulgarian Lev': '保加利亞列弗',
+                'Brazilian Real': '巴西雷亞爾',
+                'Canadian Dollar': '加拿大元',
+                'Swiss Franc': '瑞士法郎',
+                'Yuan Renminbi': '人民幣',
+                'Czech Koruna': '捷克克朗',
+                'Danish Krone': '丹麥克朗',
+                'Pound Sterling': '英鎊',
+                'Hong Kong Dollar': '港元',
+                'Croatian Kuna': '克羅地亞庫納',
+                'Forint': '福林',
+                'Rupiah': '印尼盾',
+                'New Israeli Sheqel': '新以色列謝克爾',
+                'Indian Rupee': '印度盧比',
+                'Yen': '日元',
+                'Won': '韓元',
+                'Mexican Peso': '墨西哥比索',
+                'Malaysian Ringgit': '馬來西亞令吉',
+                'Norwegian Krone': '挪威克朗',
+                'New Zealand Dollar': '新西蘭元',
+                'Philippine Peso': '菲律賓比索',
+                'Zloty': '茲羅提',
+                'New Romanian Leu': '新羅馬尼亞列伊',
+                'Russian Ruble': '俄羅斯盧布',
+                'Swedish Krona': '瑞典克朗',
+                'Singapore Dollar': '新加坡元',
+                'Turkish Lira': '土耳其里拉',
+                'US Dollar': '美元',
+                'Rand': '蘭德',
+                'Euro': '歐元',
+                'By Signing up you agree to the': '通過 報名 你同意',
+                'Terms of Service': '服務條款',
+                'and': '和',
+                'Privacy Policy': '隱私政策',
+                'Facebook': ' 脸书',
+                'Sign Up': '註冊',
+                'Sign Out':'注销',
+                'Login': '登錄',
+                'loading...': '載入中...',
+                'Help':'帮助',
+                'Settings':'設置',
+                
             })
             .translations('th-TH', {
-                "titlehome": "หน้าหลัก",
-                "tabhome": "หน้าหลัก",
-                "barchat": "พูดคุย"
+               'Home': 'หน้าหลัก',
+                'Chat': 'พูดคุย',
+                'New Post': 'โพสต์ใหม่',
+                'Rate': 'อัตรา',
+                'Me': 'ฉัน',
+                'See All': 'ทั้งหมด',
+                'More': 'เพิ่มเติม',
+                'Chat List': 'รายการพูดคุย',
+                'Add': 'เพิ่ม',
+                'From': 'จาก',
+                'Amount': 'จำนวน',
+                'To': 'ไปยัง',
+                'Phone No.': 'เบอร์โทรศัพท์',
+                'Schedule': 'ตารางเวลา',
+                'Exchange Rate': 'อัตราแลกเปลี่ยน',
+                'Search': 'ค้นหา',
+                'Currency': 'เงินตรา',
+                'Australian Dollar': 'ดอลลาร์ออสเตรเลีย',
+                'Bulgarian Lev': 'บัลแกเรียเลฟ',
+                'Brazilian Real': 'บราซิลเรียล',
+                'Canadian Dollar': 'ดอลลาร์แคนาดา',
+                'Swiss Franc': 'ฟรังก์สวิส',
+                'Yuan Renminbi': 'หยวน',
+                'Czech Koruna': 'สาธารณรัฐเช็ก',
+                'Danish Krone': 'โครนเดนมาร์ก',
+                'Pound Sterling': 'ปอนด์สเตอร์ลิง',
+                'Hong Kong Dollar': 'ดอลลาร์ฮ่องกง',
+                'Croatian Kuna': 'โครเอเชีย',
+                'Forint': 'โฟรินท์',
+                'Rupiah': 'รูเปียห์',
+                'New Israeli Sheqel': 'อิสราเอล ใหม่',
+                'Indian Rupee': 'รูปีอินเดีย',
+                'Yen': 'เยน',
+                'Won': 'วอน',
+                'Mexican Peso': 'เปโซเม็กซิกัน',
+                'Malaysian Ringgit': 'ริงกิตมาเลเซีย',
+                'Norwegian Krone': 'โครนนอร์เวย์',
+                'New Zealand Dollar': 'ดอลลาร์นิวซีแลนด์',
+                'Philippine Peso': 'เปโซ ฟิลิปปินส์',
+                'Zloty': 'โปแลนด์',
+                'New Romanian Leu': 'โรมาเนีย ใหม่',
+                'Russian Ruble': 'รูเบิลรัสเซีย',
+                'Swedish Krona': 'โครนสวีเดน',
+                'Singapore Dollar': 'ดอลลาร์สิงคโปร์',
+                'Turkish Lira': 'ลีร่าตุรกี',
+                'US Dollar': 'ดอลลาร์สหรัฐ',
+                'Rand': 'แรนด์',
+                'Euro': 'ยูโร',
+                'By Signing up you agree to the': 'เมื่อสมัครใช้งานคุณยอมรับข้อกำหนด',
+                'Terms of Service': 'ในการให้บริการ',
+                'and': 'และ',
+                'Privacy Policy': 'นโยบายความเป็นส่วนตัว',
+                'Facebook': 'เฟซบุ๊ก',
+                'Signup': 'ลงชื่อ',
+                'Login': 'เข้าสู่ระบบ',
+                'loading...': 'กำลังโหลด...',
+                'Payment':'付款',
+                'Credits & Referral':'现金及推荐',
+                'Account':'帳戶'
             });
 
         $translateProvider.preferredLanguage('en');

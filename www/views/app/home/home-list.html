@@ -1,4 +1,4 @@
-<ion-view view-title="{{'home.titlehome' | translate}}" class="shop-home-view">
+<ion-view view-title="{{'Home' | translate}}" class="shop-home-view">
     <ion-content>
         <ion-refresher on-refresh="doRefresh2()"></ion-refresher>
         <div class="list shop-home-options-list">
@@ -13,7 +13,7 @@
                 </div>
                 <div class="row option-copy" ng-click="gotoSeeAll()">
                     <div class="col col-75">
-                        <span>{{'home-list.seeall' | translate}}</span>
+                        <span>{{'See All' | translate}}</span>
                     </div>
                     <div class="col col-25 option-icon">
                         <i class="icon ion-chevron-right"></i>
@@ -28,7 +28,7 @@
 
                 <span class="title-copy">{{ key }}</span>
                 <span class="currency-flag currency-flag-{{key | lowercase}}"></span>
-                <a class="button button-small button-dark section-action" ui-sref="app.more({more: key})">{{'home-list.more' | translate}}</a>
+                <a class="button button-small button-dark section-action" ui-sref="app.more({more: key})">{{'More' | translate}}</a>
             </div>
             <ion-scroll direction="x" class="wide-as-needed" scroll="true" overflow-scroll="{{scroll === true ? 'true': scroll === false ? 'false' : 'true'}}">
                 <div class="row shop-products-narrow-cards-outer shop-product-cards-scroller" style="width: 500px;">
