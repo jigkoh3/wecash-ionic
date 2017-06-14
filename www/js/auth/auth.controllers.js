@@ -63,6 +63,7 @@ angular.module('your_app_name.auth.controllers', [])
 		$scope.showTerms = function () {
 			$scope.terms_of_service_modal.show();
 		};
+
 	})
 
 	.controller('LogInCtrl', function ($rootScope, $scope, $state, AuthService, $ionicLoading, $translate) {

@@ -43,7 +43,7 @@ angular.module('your_app_name', [
     })
 
 
-    .run(function ($ionicPlatform, $rootScope, $ionicHistory, $timeout, $ionicConfig) {
+    .run(function ($ionicPlatform, $rootScope, $ionicHistory, $timeout, $ionicConfig, $translate) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -89,12 +89,36 @@ angular.module('your_app_name', [
 
             navigator.globalization.getPreferredLanguage(
                 function (language) {
-                    //alert('language: ' + language.value + '\n');
+                    // alert('language: ' + language.value + '\n');
                     window.localStorage.language = language.value;
+                    var tran = window.localStorage.getItem("language");
+                    if (tran) {
+                        $translate.use(tran);
+
+                    }
                 },
                 function () { alert('Error getting language\n'); }
             );
+
+
+
         });
+        // $ionicPlatform.on("resume", function (event, $translate) {
+        //      navigator.globalization.getPreferredLanguage(
+        //         function (language) {
+        //             alert('language: ' + language.value + '\n');
+        //             window.localStorage.language = language.value;
+        //         },
+        //         function () { alert('Error getting language\n'); }
+        //     );
+
+        //     var tran = window.localStorage.getItem("language");
+        //     if (tran) {
+        //         $translate.use(tran);
+
+
+        //     }
+        // });
 
         // This fixes transitions for transparent background views
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
@@ -413,15 +437,23 @@ angular.module('your_app_name', [
                 'Privacy Policy': '隱私政策',
                 'Facebook': ' 脸书',
                 'Sign Up': '註冊',
-                'Sign Out':'注销',
+                'Sign Out': '注销',
                 'Login': '登錄',
+                'Logout': '登出',
                 'loading...': '載入中...',
-                'Help':'帮助',
-                'Settings':'設置',
-                
+                'Payment': '付款',
+                'Credits & Referral': '積分 & 推薦',
+                'Account': '帳戶',
+                'Help': '帮助',
+                'Settings': '設置',
+                'Posts': '帖子',
+                'Booking': '预订',
+                'Mobile': '移动',
+                'Profile': '轮廓'
+
             })
             .translations('th-TH', {
-               'Home': 'หน้าหลัก',
+                'Home': 'หน้าหลัก',
                 'Chat': 'พูดคุย',
                 'New Post': 'โพสต์ใหม่',
                 'Rate': 'อัตรา',
@@ -470,16 +502,25 @@ angular.module('your_app_name', [
                 'Rand': 'แรนด์',
                 'Euro': 'ยูโร',
                 'By Signing up you agree to the': 'เมื่อสมัครใช้งานคุณยอมรับข้อกำหนด',
-                'Terms of Service': 'ในการให้บริการ',
+                'Terms of Service': 'การให้บริการ ',
                 'and': 'และ',
                 'Privacy Policy': 'นโยบายความเป็นส่วนตัว',
                 'Facebook': 'เฟซบุ๊ก',
-                'Signup': 'ลงชื่อ',
+                'Sign Up': 'ลงชื่อ',
+                'Sign Out': 'ออกจากระบบ',
                 'Login': 'เข้าสู่ระบบ',
+                'Logout': 'ออกจากระบบ',
                 'loading...': 'กำลังโหลด...',
-                'Payment':'付款',
-                'Credits & Referral':'现金及推荐',
-                'Account':'帳戶'
+                'Payment': 'การชำระเงิน',
+                'Credits & Referral': 'เครดิตและการแนะนำ',
+                'Account': 'บัญชี',
+                'Help': 'ช่วยเหลือ',
+                'Settings': 'ตั้งค่า',
+                'Posts': 'โพสต์',
+                'Booking': 'ดูการจอง',
+                'Mobile': 'โทรศัพท์มือถือ',
+                'Profile': 'ข้อมูลส่วนตัว'
+
             });
 
         $translateProvider.preferredLanguage('en');
