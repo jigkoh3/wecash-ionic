@@ -57,6 +57,7 @@ angular.module('your_app_name.auth.controllers', [])
 		});
 
 		$scope.showPrivacyPolicy = function () {
+			$scope.tran = window.localStorage.getItem("language");
 			$scope.privacy_policy_modal.show();
 		};
 
