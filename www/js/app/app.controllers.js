@@ -66,7 +66,7 @@ angular.module('your_app_name.app.controllers', [])
         */
     })
 
-    .controller('HomeCtrl', function ($scope, $rootScope, ExchangesRateService, $ionicModal, currencyFormatService, $timeout, AuthService, ExchangeService, googleMapService, $stateParams, $state, $cordovaGeolocation, $ionicLoading, PushnotiService, $translate) {
+    .controller('HomeCtrl', function ($scope, $rootScope, $http, ExchangesRateService, $ionicModal, currencyFormatService, $timeout, AuthService, ExchangeService, googleMapService, $stateParams, $state, $cordovaGeolocation, $ionicLoading, PushnotiService, $translate) {
         var tran = window.localStorage.getItem("language");
         $translate.use(tran);
         $scope.exchangesRate = [];
@@ -153,11 +153,46 @@ angular.module('your_app_name.app.controllers', [])
         $scope.getExchanges = function () {
             ExchangeService.getExchanges().then(function (res) {
                 $scope.listExchanges = res;
+                var options = {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
+                };
+                $cordovaGeolocation
+                    .getCurrentPosition(options)
+                    .then(function (position) {
+                        var lat = position.coords.latitude;
+                        var long = position.coords.longitude;
+                        // alert('long: ' + long + 'lat:' + lat);      
+                        // alert('exchanges' + JSON.stringify(exchanges));
+                        angular.forEach($scope.listExchanges, function (exchange) {
+                            // alert('exchanges' + JSON.stringify(exchange));
+                            if (exchange.location && exchange.location.lat && exchange.location.lng) {
+
+                                $http.get('https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=' + exchange.location.lat + ',' + exchange.location.lng + '&destinations=' + lat + ',' + long + '&key=AIzaSyBY4B67oPlLL9AdfXNTQl6JP_meTTzq8xY')
+                                    .success(function (distance) {
+                                        // alert(JSON.stringify(distance.rows[0].elements[0].distance.value));
+
+                                        if (distance.rows[0].elements[0].distance.value) {
+                                            exchange.distanceText = (distance.rows[0].elements[0].distance.value / 1000);
+                                            // alert(exchange.distanceText);
+                                            // $scope.nearby.push(exchange);
+                                            // alert($scope.nearby);
+                                        }
+                                    });
+                            }
+                        });
+
+                    }, function (err) {
+                        // error
+                        alert(err);
+                    });
+
             }, function (err) {
                 alert('err : ' + JSON.stringify(err));
             });
-        };
 
+        };
 
         $scope.doRefresh = function () {
             ExchangesRateService.getExchangesRate('THB').then(function (data) {
@@ -199,6 +234,7 @@ angular.module('your_app_name.app.controllers', [])
                     }
                 })
         }
+
         $scope.getamount = function (ex) {
             if (ex) $scope.dataExchange.rate = ex.value;
 
@@ -208,7 +244,6 @@ angular.module('your_app_name.app.controllers', [])
             }
 
         }
-
 
         $scope.gotoMap = function () {
 

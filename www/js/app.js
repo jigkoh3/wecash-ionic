@@ -449,7 +449,8 @@ angular.module('your_app_name', [
                 'Posts': '帖子',
                 'Booking': '预订',
                 'Mobile': '移动',
-                'Profile': '轮廓'
+                'Profile': '轮廓',
+                'Km.':'公里。'
 
             })
             .translations('th-TH', {
@@ -519,7 +520,8 @@ angular.module('your_app_name', [
                 'Posts': 'โพสต์',
                 'Booking': 'ดูการจอง',
                 'Mobile': 'โทรศัพท์มือถือ',
-                'Profile': 'ข้อมูลส่วนตัว'
+                'Profile': 'ข้อมูลส่วนตัว',
+                'Km.':'กม.'
 
             });
 
