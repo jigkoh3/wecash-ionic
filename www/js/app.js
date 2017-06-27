@@ -227,15 +227,15 @@ angular.module('your_app_name', [
                 }
             })
 
-            .state('app.home.more', {
-                url: '/homeMore',
-                views: {
-                    'home-more': {
-                        templateUrl: 'views/app/home/home-more.html',
-                        controller: 'HomeCtrl'
-                    }
-                }
-            })
+            // .state('app.home.more', {
+            //     url: '/homeMore',
+            //     views: {
+            //         'home-more': {
+            //             templateUrl: 'views/app/home/home-more.html',
+            //             controller: 'HomeCtrl'
+            //         }
+            //     }
+            // })
 
             .state('app.detail', {
                 url: '/detail/:exchangeId',
@@ -267,15 +267,15 @@ angular.module('your_app_name', [
             })
 
 
-            .state('home-post-location', {
-                url: '/home-post-location',
-                views: {
-                    'menuContent': {
-                        templateUrl: 'views/app/home/home-post-location.html',
-                        controller: 'HomeCtrl'
-                    }
-                }
-            })
+            // .state('home-post-location', {
+            //     url: '/home-post-location',
+            //     views: {
+            //         'menuContent': {
+            //             templateUrl: 'views/app/home/home-post-location.html',
+            //             controller: 'HomeCtrl'
+            //         }
+            //     }
+            // })
 
             .state('app.all', {
                 url: '/all',
