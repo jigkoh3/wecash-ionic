@@ -23,7 +23,8 @@
         "ionic-plugin-keyboard": "^2.2.1",
         "phonegap-plugin-push": "^1.8.4",
         "require-dir": "^0.3.0",
-        "shelljs": "^0.3.0"
+        "shelljs": "^0.3.0",
+        "cordova-plugin-globalization": "~1.0.7"
     },
     "devDependencies": {
         "@ionic/cli-plugin-cordova": "1.2.1",
@@ -74,7 +75,8 @@
             "ionic-plugin-keyboard": {},
             "phonegap-plugin-push": {
                 "SENDER_ID": "687643823173"
-            }
+            },
+            "cordova-plugin-globalization": {}
         },
         "platforms": [
             "ios"
