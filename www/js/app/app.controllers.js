@@ -169,17 +169,38 @@ angular.module('your_app_name.app.controllers', [])
                             // alert('exchanges' + JSON.stringify(exchange));
                             if (exchange.location && exchange.location.lat && exchange.location.lng) {
 
-                                $http.get('https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=' + exchange.location.lat + ',' + exchange.location.lng + '&destinations=' + lat + ',' + long + '&key=AIzaSyBY4B67oPlLL9AdfXNTQl6JP_meTTzq8xY')
-                                    .success(function (distance) {
-                                        // alert(JSON.stringify(distance.rows[0].elements[0].distance.value));
+                                // $http.get('https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=' + exchange.location.lat + ',' + exchange.location.lng + '&destinations=' + lat + ',' + long + '&key=AIzaSyBY4B67oPlLL9AdfXNTQl6JP_meTTzq8xY')
+                                //     .success(function (distance) {
+                                //         // alert(JSON.stringify(distance.rows[0].elements[0].distance.value));
 
-                                        if (distance.rows[0].elements[0].distance.value) {
-                                            exchange.distanceText = (distance.rows[0].elements[0].distance.value / 1000);
-                                            // alert(exchange.distanceText);
-                                            // $scope.nearby.push(exchange);
-                                            // alert($scope.nearby);
-                                        }
-                                    });
+                                //         if (distance.rows[0].elements[0].distance.value) {
+                                //             exchange.distanceText = (distance.rows[0].elements[0].distance.value / 1000);
+                                //             // alert(exchange.distanceText);
+                                //             // $scope.nearby.push(exchange);
+                                //             // alert($scope.nearby);
+                                //         }
+                                //     });
+                                exchange.distanceText = getDistanceFromLatLonInKm(exchange.location.lat, exchange.location.lng, lat, long);
+
+                                function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+                                    var R = 6371; // Radius of the earth in km
+                                    var dLat = deg2rad(lat2 - lat1);  // deg2rad below
+                                    var dLon = deg2rad(lon2 - lon1);
+                                    var a =
+                                        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                                        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+                                        Math.sin(dLon / 2) * Math.sin(dLon / 2)
+                                        ;
+                                    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                                    var d = R * c; // Distance in km
+                                    return d;
+                                }
+
+                                function deg2rad(deg) {
+                                    return deg * (Math.PI / 180);
+                                }
+
+
                             }
                         });
 
@@ -193,6 +214,8 @@ angular.module('your_app_name.app.controllers', [])
             });
 
         };
+
+
 
         $scope.doRefresh = function () {
             ExchangesRateService.getExchangesRate('THB').then(function (data) {

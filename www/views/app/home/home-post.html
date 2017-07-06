@@ -9,7 +9,7 @@
     <div class="list">
       <label class="item item-input">
                 <span class="input-label">{{'From' | translate}}</span>
-                <input type="text" ng-model="dataExchange.currency_from" ionic-autocomplete="{items: currencys, onSelect: onFromSelected, onDataInvalid: onFromInvalid}" ng-change="chkCurrency()" />
+                <input type="text" placeholder="Search" ng-model="dataExchange.currency_from" ionic-autocomplete="{items: currencys, onSelect: onFromSelected, onDataInvalid: onFromInvalid}" ng-change="chkCurrency()" />
             </label>
       <label class="item item-input">
                 <span class="input-label">{{'Amount' | translate}}</span>
@@ -30,14 +30,14 @@
                 <!--<label>{{dataExchange.tel}}</label>-->
       </label>
 
-      <ion-google-place placeholder="Your address" ng-model="place"  location-changed="locationChanged"/>
+      <ion-google-place placeholder="Your address" ng-model="place" location-changed="locationChanged" />
 
       <label class="item item-input">
                 <span class="input-label">{{'Schedule' | translate}}</span>
                 <input type="date" ng-model="dataExchange.schedule">
             </label>
     </div>
-    
+
   </ion-content>
   <!--<div class="bar bar-footer footer-bottom">
     <div class="row menu-bottom-options">

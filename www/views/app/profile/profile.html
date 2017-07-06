@@ -2,8 +2,8 @@
   <ion-content has-bouncing='false' class="profile-content" delegate-handle="profile-scroll">
     <div class="row profile-data">
       <div class="col">
-        <ion-slide-box class="profile-slides" on-slide-changed="slideHasChanged($index)">
-          <ion-slide>
+        <div class="profile-slides" on-slide-changed="slideHasChanged($index)">
+          <div>
             <div class="row slide-content">
               <div class="col col-center user-data">
                 <!-- We need a wrapper with width set for the preload image directive -->
@@ -18,8 +18,8 @@
                 </p>-->
               </div>
             </div>
-          </ion-slide>
-          <ion-slide>
+          </div>
+          <div>
             <div class="row slide-content">
               <div class="col col-center user-data">
                 <p class="user-resume">
@@ -27,8 +27,8 @@
                 </p>
               </div>
             </div>
-          </ion-slide>
-        </ion-slide-box>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row user-interactions">

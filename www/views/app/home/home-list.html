@@ -56,7 +56,7 @@
                                 <h2 class="card-title">{{ex.user.displayName ? ex.user.displayName : '-'}}</h2>
                                 <p class="card-description"><b>{{ex.location.name ? ex.location.name : '-' }}</b></p>
                                 <!--<div ng-repeat="deli in nearby ">-->
-                                        <p class="card-description"><b>{{ex.distanceText}} {{'Km.' | translate}}</b></p>
+                                        <p class="card-description"><b>{{ex.distanceText | number : 2}} {{'Km.' | translate}}</b></p>
                                     <!--</div>-->
                             </div>
                         </div>
