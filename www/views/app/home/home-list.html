@@ -36,7 +36,7 @@
             </div>
             <ion-scroll direction="x" class="wide-as-needed" scroll="true" overflow-scroll="{{scroll === true ? 'true': scroll === false ? 'false' : 'true'}}">
                 <div class="row shop-products-narrow-cards-outer shop-product-cards-scroller" style="width: 500px;">
-                    <div ng-repeat="ex in value | limitTo : 5" class="col col-50 shop-product-narrow-card" ui-sref="app.detail({exchangeId: ex._id})">
+                    <div ng-repeat="ex in value | limitTo : 4" class="col col-50 shop-product-narrow-card" ui-sref="app.detail({exchangeId: ex._id})">
                         <div class="list card">
                             <div class="item item-body">
                                 <div class="row">

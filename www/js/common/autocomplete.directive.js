@@ -5,8 +5,11 @@ angular.module('autocomplete.directive', [])
       var popoverTemplate =
       '<ion-popover-view style="margin-top:5px" ng-click="closePop()">' +
         '<ion-content>' +
-        '<i class="icon item-icon-left ion-close" style="padding-left: 199px;" ng-click="closePop()"></i>'+
+        '<div style="text-align: right; margin-right: 15px; ">'+
+        '<i class="icon-rigth ion-close" ng-click="closePop()"></i>'+
+        '</div>'+
         '<div class="list">' +
+        
         '<a href="" class="item" ng-repeat="item in items | filter:{base : inputSearch} as datas" ng-click="selectItem(item)">{{item.base}}</a>' +
         '</div>' +
         '</ion-content>' +

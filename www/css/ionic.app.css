@@ -14065,7 +14065,6 @@ ion-nav-bar.feed-color * .buttons button::before {
     margin: 0px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;
     font-size: 14px;
     font-weight: 500;
     color: #626262;
@@ -14077,7 +14076,6 @@ ion-nav-bar.feed-color * .buttons button::before {
     margin: 2px 0px 0px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;
 }
 
 .shop-products-narrow-cards-outer.shop-product-cards-scroller {
@@ -14086,16 +14084,13 @@ ion-nav-bar.feed-color * .buttons button::before {
     -ms-flex-wrap: none;
     flex-wrap: nowrap;
     padding: 0px 5px;
-    overflow: auto;
 }
 
 .shop-products-narrow-cards-outer.shop-product-cards-scroller .shop-product-narrow-card {
     padding: 0px 5px;
 }
 
-.shop-products-narrow-cards-outer.shop-product-cards-scroller .card {
-    overflow: inherit;
-}
+
 
 ion-nav-bar.shop-color ion-header-bar {
     background-color: #3E454C !important;
