@@ -9,7 +9,7 @@
     "bourbon": "~4.2.3",
     "underscore": "~1.8.3",
     "moment": "~2.10.3",
-    "angular-moment": "~0.10.1",
+    "angular-moment": "^1.0.1",
     "angular-ios9-uiwebview-patch": "~1.1.1",
     "knuth-shuffle": "https://github.com/coolaj86/knuth-shuffle.git",
     "currency-flags": "https://github.com/transferwise/currency-flags.git#^0.4.0",

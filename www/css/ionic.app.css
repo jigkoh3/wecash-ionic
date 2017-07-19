@@ -10103,18 +10103,6 @@ textarea {
     font-size: 16px;
 }
 
-.placeholder-icon {
-    color: #aaa;
-}
-
-.placeholder-icon:first-child {
-    padding-right: 6px;
-}
-
-.placeholder-icon:last-child {
-    padding-left: 6px;
-}
-
 .item-stacked-label {
     display: block;
     background-color: transparent;
@@ -10220,19 +10208,6 @@ textarea {
     padding-left: 0;
 }
 
-textarea::-moz-placeholder {
-    color: white;
-}
-
-textarea:-ms-input-placeholder {
-    color: white;
-}
-
-textarea::-webkit-input-placeholder {
-    color: white;
-    text-indent: -3px;
-}
-
 textarea {
     height: auto;
 }
@@ -10283,21 +10258,6 @@ input[type="file"] {
     width: 200px;
 }
 
-input::-moz-placeholder,
-textarea::-moz-placeholder {
-    color: white;
-}
-
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
-    color: white;
-}
-
-input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
-    color: white;
-    text-indent: 0;
-}
 
 input[disabled],
 select[disabled],
@@ -13388,22 +13348,6 @@ ion-spinner.spinner-on-load {
     font-weight: 500;
 }
 
-.auth-view .form-wrapper input::-webkit-input-placeholder {
-    color: #b3b3b3;
-}
-
-.auth-view .form-wrapper input::-moz-placeholder {
-    color: #b3b3b3;
-}
-
-.auth-view .form-wrapper input:-moz-placeholder {
-    color: #b3b3b3;
-}
-
-.auth-view .form-wrapper input:-ms-input-placeholder {
-    color: #b3b3b3;
-}
-
 .auth-view .form-fields-outer {
     margin: 0px;
     padding: 0px 16px;
@@ -14032,22 +13976,6 @@ ion-nav-bar.feed-color * .buttons button::before {
     height: 34px;
 }
 
-.new-comment-outer input::-webkit-input-placeholder {
-    color: gray;
-}
-
-.new-comment-outer input::-moz-placeholder {
-    color: gray;
-}
-
-.new-comment-outer input:-moz-placeholder {
-    color: gray;
-}
-
-.new-comment-outer input:-ms-input-placeholder {
-    color: gray;
-}
-
 .popup-outer .popup {
     border-radius: 4px;
     background-color: #fcfcfc;
@@ -14649,22 +14577,6 @@ ion-nav-bar.shipping-address-color * .buttons button::before {
     padding: 0px;
 }
 
-.shipping-address-view .item-floating-label input::-webkit-input-placeholder {
-    color: #777777;
-}
-
-.shipping-address-view .item-floating-label input::-moz-placeholder {
-    color: #777777;
-}
-
-.shipping-address-view .item-floating-label input:-moz-placeholder {
-    color: #777777;
-}
-
-.shipping-address-view .item-floating-label input:-ms-input-placeholder {
-    color: #777777;
-}
-
 .shipping-address-view .item-toggle {
     padding-left: 10px;
     font-size: 14px;
@@ -14839,3 +14751,18 @@ a:link {
     font-size: 13px;
     font-weight: 300;
 }
+
+input:-moz-placeholder, textarea:-moz-placeholder {
+  color: #aaaaaa; }
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  color: #aaaaaa; }
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #aaaaaa; }
+  .placeholder-icon {
+  color: #aaa; }
+  .placeholder-icon:first-child {
+    padding-right: 6px; }
+  .placeholder-icon:last-child {
+    padding-left: 6px; }
+
+

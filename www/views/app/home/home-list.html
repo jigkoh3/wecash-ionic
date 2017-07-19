@@ -1,6 +1,6 @@
 <ion-view view-title="{{'Home' | translate}}" class="shop-home-view">
     <ion-content>
-        
+
         <div ng-repeat="deli in nearby">
             <p class="card-description"><b>{{deli}} km</b></p>
         </div>
@@ -26,7 +26,7 @@
             </a>
         </div>
 
-        
+
         <div ng-repeat="(key, value) in listExchanges | groupBy: 'currency_from'">
             <div class="item item-divider shop-section-title">
 
@@ -52,12 +52,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="item item-body">
+                            <div class="item item-body">    
                                 <h2 class="card-title">{{ex.user.displayName ? ex.user.displayName : '-'}}</h2>
+                                
                                 <p class="card-description"><b>{{ex.location.name ? ex.location.name : '-' }}</b></p>
-                                <!--<div ng-repeat="deli in nearby ">-->
-                                        <p class="card-description"><b>{{ex.distanceText | number : 2}} {{'Km.' | translate}}</b></p>
-                                    <!--</div>-->
+                                <p class="card-description"><b>{{ex.distanceText | number : 2}} {{'Km.' | translate}}</b></p>
+                                <h4 am-time-ago="ex.created"> </h4>
                             </div>
                         </div>
 
@@ -67,4 +67,5 @@
         </div>
 
     </ion-content>
+
 </ion-view>

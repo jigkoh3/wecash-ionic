@@ -180,7 +180,10 @@ angular.module('your_app_name.app.controllers', [])
                                 //             // alert($scope.nearby);
                                 //         }
                                 //     });
-                                exchange.distanceText = getDistanceFromLatLonInKm(exchange.location.lat, exchange.location.lng, lat, long);
+                                if (exchange && exchange.location) {
+                                    exchange.distanceText = getDistanceFromLatLonInKm(exchange.location.lat, exchange.location.lng, lat, long);
+
+                                }
 
                                 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
                                     var R = 6371; // Radius of the earth in km

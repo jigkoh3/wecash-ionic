@@ -1,4 +1,5 @@
 <ion-modal-view>
+  <!--<link href="https://code.ionicframework.com/1.0.0-beta.2/css/ionic.css" rel="stylesheet">-->
   <ion-header-bar class="bar bar-header bar-balanced">
     <a class="button button-clear" ng-click="closeList()"><span class="icon ion-close"></span></a>
     <h1 class="title">{{'Add' | translate}}</h1>
@@ -9,15 +10,15 @@
     <div class="list">
       <label class="item item-input">
                 <span class="input-label">{{'From' | translate}}</span>
-                <input type="text" placeholder="Search" ng-model="dataExchange.currency_from" ionic-autocomplete="{items: currencys, onSelect: onFromSelected, onDataInvalid: onFromInvalid}" ng-change="chkCurrency()" />
+                <input type="text" placeholder="{{'Please enter currency' | translate}}" ng-model="dataExchange.currency_from" ionic-autocomplete="{items: currencys, onSelect: onFromSelected, onDataInvalid: onFromInvalid}" ng-change="chkCurrency()" />
             </label>
       <label class="item item-input">
                 <span class="input-label">{{'Amount' | translate}}</span>
-                <input type="number" ng-model="dataExchange.amount_from" ng-change="getamount()">
+                <input type="number" placeholder="{{'Please enter amount' | translate}}" ng-model="dataExchange.amount_from" ng-change="getamount()">
             </label>
       <label class="item item-input">
                 <span class="input-label">{{'To' | translate}}</span>
-                <input type="text" ng-model="dataExchange.currency_to1" ionic-autocomplete="{items: exchangeto, onSelect: onToSelected, onDataInvalid: onToInvalid}" ng-change="chkCurrencyTo()" />
+                <input type="text" placeholder="{{'Please enter currency' | translate}}" ng-model="dataExchange.currency_to1" ionic-autocomplete="{items: exchangeto, onSelect: onToSelected, onDataInvalid: onToInvalid}" ng-change="chkCurrencyTo()" />
             </label>
       <label class="item item-input">
                 <span class="input-label">{{'Amount' | translate}}</span>
@@ -26,15 +27,15 @@
       </label>
       <label class="item item-input">
                 <span class="input-label">{{'Phone No.' | translate}}</span>
-                 <input type="number" ng-model="dataExchange.tel"> 
+                 <input type="number" placeholder="{{'Please enter phone no.' | translate}}" ng-model="dataExchange.tel"> 
                 <!--<label>{{dataExchange.tel}}</label>-->
       </label>
 
-      <ion-google-place placeholder="Your address" ng-model="place" location-changed="locationChanged" />
+      <ion-google-place placeholder="{{'Please enter your address' | translate}}" ng-model="place" location-changed="locationChanged" />
 
       <label class="item item-input">
                 <span class="input-label">{{'Schedule' | translate}}</span>
-                <input type="date" ng-model="dataExchange.schedule">
+                <input type="date"  ng-model="dataExchange.schedule">
             </label>
     </div>
 
@@ -50,4 +51,5 @@
       </div>
     </div>
   </div>-->
+
 </ion-modal-view>

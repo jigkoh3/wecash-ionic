@@ -450,7 +450,11 @@ angular.module('your_app_name', [
                 'Booking': '预订',
                 'Mobile': '移动',
                 'Profile': '轮廓',
-                'Km.':'公里。'
+                'Km.': '公里。',
+                'Please enter currency': '請輸入貨幣',
+                'Please enter amount': '請輸入金額',
+                'Please enter phone no.': '請輸入電話號碼',
+                'Please enter your address': '請輸入您的地址'
 
             })
             .translations('th-TH', {
@@ -521,7 +525,11 @@ angular.module('your_app_name', [
                 'Booking': 'ดูการจอง',
                 'Mobile': 'โทรศัพท์มือถือ',
                 'Profile': 'ข้อมูลส่วนตัว',
-                'Km.':'กม.'
+                'Km.': 'กม.',
+                'Please enter currency': 'โปรดป้อนสกุลเงิน',
+                'Please enter amount': 'โปรดป้อนจำนวนเงิน',
+                'Please enter phone no.': 'โปรดใส่หมายเลขโทรศัพท์',
+                'Please enter your address': 'โปรดป้อนที่อยู่ของคุณ'
 
             });
 
